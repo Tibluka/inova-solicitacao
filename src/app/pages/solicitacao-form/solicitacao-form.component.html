@@ -1,0 +1,119 @@
+<form [formGroup]="profileForm" class="example-form" autocomplete="off" (ngSubmit)="submit()">
+
+  <h1 class="title-section mt-30">DADOS DO ATO</h1>
+  <mat-form-field class="example-full-width">
+    <mat-label>Nome da(s) Parte(s)</mat-label>
+    <textarea required formControlName="nome_partes" matInput value=""></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Tipo do Ato</mat-label>
+    <input required formControlName="tipo_ato" matInput value="">
+  </mat-form-field>
+
+  <div class="d-flex">
+    <mat-form-field class="example-full-width mr">
+      <mat-label>Livro</mat-label>
+      <input required formControlName="livro_ato" matInput value="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width ml">
+      <mat-label>Folha</mat-label>
+      <input required formControlName="folha_ato" matInput value="">
+    </mat-form-field>
+  </div>
+
+  <h1 class="title-section mt-30">
+    FORMA DE ENTREGA
+  </h1>
+
+  <mat-radio-group color="primary" aria-labelledby="example-radio-group-label" class="example-radio-group"
+    [(ngModel)]="infoService.opcaoEntregaSelecionada" [ngModelOptions]="{standalone: true}">
+    <mat-radio-button class="example-radio-button" *ngFor="let opcaoEntregaSelecionada of infoService.opcoesEntrega"
+      [value]="opcaoEntregaSelecionada">
+      {{opcaoEntregaSelecionada}}
+    </mat-radio-button>
+  </mat-radio-group>
+  <input  formControlName="entrega" [value]="infoService.opcaoEntregaSelecionada">
+
+  <div class="to-deliver" *ngIf="infoService.opcaoEntregaSelecionada === 'Entregar no endereço'">
+    <div class="d-flex">
+      <mat-form-field class="example-full-width mr">
+        <mat-label>CEP</mat-label>
+        <input formControlName="cep" matInput [value]="">
+      </mat-form-field>
+      <mat-form-field class="example-full-width ml">
+        <mat-label>Endereço</mat-label>
+        <input formControlName="endereco" matInput [value]="">
+      </mat-form-field>
+      <mat-form-field class="example-full-width ml">
+        <mat-label>Número</mat-label>
+        <input formControlName="numero" matInput [value]="">
+      </mat-form-field>
+    </div>
+
+    <div class="d-flex">
+      <mat-form-field class="example-full-width ml">
+        <mat-label>Complemento</mat-label>
+        <input formControlName="complemento" matInput [value]="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width ml">
+        <mat-label>Bairro</mat-label>
+        <input formControlName="bairro" matInput [value]="">
+      </mat-form-field>
+    </div>
+
+    <div class="d-flex">
+      <mat-form-field class="example-full-width ml">
+        <mat-label>Cidade</mat-label>
+        <input formControlName="cidade" matInput [value]="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width ml">
+        <mat-label>Estado</mat-label>
+        <input formControlName="estado" matInput [value]="">
+      </mat-form-field>
+    </div>
+  </div>
+
+
+  <h1 class="title-section mt-30">
+    DADOS DO SOLICITANTE
+  </h1>
+
+
+  <div class="d-flex">
+    <mat-form-field class="example-full-width mr">
+      <mat-label>Seu Nome</mat-label>
+      <input required formControlName="nome" matInput [value]="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width ml">
+      <mat-label>CPF ou CNPJ</mat-label>
+      <input required formControlName="cpf_cnpj" matInput [value]="">
+    </mat-form-field>
+  </div>
+
+  <div class="d-flex">
+    <mat-form-field class="example-full-width mr">
+      <mat-label>E-mail</mat-label>
+      <input required formControlName="email" matInput [value]="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width ml">
+      <mat-label>Telefone/Celular</mat-label>
+      <input required formControlName="telefone" matInput [value]="">
+    </mat-form-field>
+
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Mensagem</mat-label>
+    <textarea required formControlName="mensagem" matInput placeholder="Ex. It makes me feel..." [value]=""></textarea>
+  </mat-form-field>
+
+  <div class="text-right">
+    <button [disabled]="profileForm.invalid" mat-raised-button color="primary" class="btn">Salvar</button>
+  </div>
+</form>
