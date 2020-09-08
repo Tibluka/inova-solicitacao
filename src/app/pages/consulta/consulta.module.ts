@@ -6,7 +6,9 @@ import { ConsultaComponent } from './consulta.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +21,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ConsultaRoutingModule,
     MatTableModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCardModule,
+    FormsModule
   ]
 })
 export class ConsultaModule { }

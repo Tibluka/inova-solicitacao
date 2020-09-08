@@ -1,5 +1,4 @@
 <form [formGroup]="profileForm" class="example-form" autocomplete="off" (ngSubmit)="submit()">
-
   <h1 class="title-section mt-30">DADOS DO ATO</h1>
   <mat-form-field class="example-full-width">
     <mat-label>Nome da(s) Parte(s)</mat-label>
@@ -35,45 +34,43 @@
     </mat-radio-button>
   </mat-radio-group>
 
-  {{infoService.opcaoEntregaSelecionada | json}}
-
   <div class="to-deliver" *ngIf="infoService.opcaoEntregaSelecionada === 'Entregar no endereço'">
     <div class="d-flex">
       <mat-form-field class="example-full-width mr">
         <mat-label>CEP</mat-label>
-        <input formControlName="cep" matInput [value]="">
+        <input formControlName="cep" matInput>
       </mat-form-field>
       <mat-form-field class="example-full-width ml">
         <mat-label>Endereço</mat-label>
-        <input formControlName="endereco" matInput [value]="">
+        <input formControlName="endereco" matInput>
       </mat-form-field>
       <mat-form-field class="example-full-width ml">
         <mat-label>Número</mat-label>
-        <input formControlName="numero" matInput [value]="">
+        <input formControlName="numero" matInput>
       </mat-form-field>
     </div>
 
     <div class="d-flex">
       <mat-form-field class="example-full-width ml">
         <mat-label>Complemento</mat-label>
-        <input formControlName="complemento" matInput [value]="">
+        <input formControlName="complemento" matInput>
       </mat-form-field>
 
       <mat-form-field class="example-full-width ml">
         <mat-label>Bairro</mat-label>
-        <input formControlName="bairro" matInput [value]="">
+        <input formControlName="bairro" matInput>
       </mat-form-field>
     </div>
 
     <div class="d-flex">
       <mat-form-field class="example-full-width ml">
         <mat-label>Cidade</mat-label>
-        <input formControlName="cidade" matInput [value]="">
+        <input formControlName="cidade" matInput>
       </mat-form-field>
 
       <mat-form-field class="example-full-width ml">
         <mat-label>Estado</mat-label>
-        <input formControlName="estado" matInput [value]="">
+        <input formControlName="estado" matInput>
       </mat-form-field>
     </div>
   </div>
@@ -87,40 +84,36 @@
   <div class="d-flex">
     <mat-form-field class="example-full-width mr">
       <mat-label>Seu Nome</mat-label>
-      <input required formControlName="nome" matInput [value]="">
+      <input pattern="[a-z-A-Z\s]* [a-z-A-Z\s]*" required formControlName="nome" matInput>
     </mat-form-field>
 
     <mat-form-field class="example-full-width ml">
       <mat-label>CPF ou CNPJ</mat-label>
-      <input required formControlName="cpf_cnpj" matInput [value]="">
+      <input required formControlName="cpf_cnpj" [textMask]="{mask: cpfcnpjmask}" matInput>
     </mat-form-field>
   </div>
 
   <div class="d-flex">
     <mat-form-field class="example-full-width mr">
       <mat-label>E-mail</mat-label>
-      <input required formControlName="email" matInput [value]="">
+      <input required formControlName="email" matInput>
     </mat-form-field>
 
     <mat-form-field class="example-full-width ml">
       <mat-label>Telefone/Celular</mat-label>
-      <input required formControlName="telefone" matInput [value]="">
+      <input required formControlName="telefone" mask="(00) 00000-0000" matInput>
     </mat-form-field>
 
   </div>
 
   <mat-form-field class="example-full-width">
     <mat-label>Mensagem</mat-label>
-    <textarea required formControlName="mensagem" matInput placeholder="Ex. It makes me feel..." [value]=""></textarea>
+    <textarea required formControlName="mensagem" matInput placeholder="Ex. It makes me feel..."></textarea>
   </mat-form-field>
 
   <div class="text-right">
-    <button  mat-raised-button color="primary" class="btn">Salvar</button>
+    <button [disabled]="profileForm.invalid" mat-raised-button color="primary" class="btn">Solicitar</button>
   </div>
 
 </form>
-<div class="btn">
-  <button class="btn" (click)="infoService.consultar()">
-    consultar
-  </button>
-</div>
+

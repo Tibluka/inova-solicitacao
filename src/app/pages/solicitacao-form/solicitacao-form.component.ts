@@ -5,7 +5,7 @@ import { TokenService } from '../../services/token.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
-interface tokenInterface{
+interface tokenInterface {
   access_token: string;
   expires_in: number;
   token_type: string;
@@ -14,35 +14,36 @@ interface tokenInterface{
 @Component({
   selector: 'app-solicitacao-form',
   templateUrl: './solicitacao-form.component.html',
-  styleUrls: ['./solicitacao-form.component.scss']})
+  styleUrls: ['./solicitacao-form.component.scss']
+})
 
 export class SolicitacaoFormComponent implements OnInit {
 
+ 
   profileForm = this.fb.group({
     nome_partes: ['asd'],
     tipo_ato: ['ads'],
     livro_ato: ['asd'],
     folha_ato: ['sad'],
     entrega: [this.infoService.opcaoEntregaSelecionada],
-    cep: ['sad'],
+    cep: [''],
     endereco: [''],
     numero: [''],
     complemento: [''],
     bairro: [''],
     cidade: [''],
     estado: [''],
-    nome: ['sad'],
+    nome: [''],
     cpf_cnpj: [''],
-    email: ['sad'],
+    email: ['', ([Validators.required, Validators.email])],
     telefone: ['sad'],
     mensagem: ['asd'],
   })
 
-  constructor(private fb: FormBuilder, public infoService: InfoService,  private cdr: ChangeDetectorRef, public tokenService: TokenService) { }
+  constructor(private fb: FormBuilder, public infoService: InfoService, private cdr: ChangeDetectorRef, public tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.tokenService.getToken().subscribe((result: tokenInterface) => {
-      console.log(result)
       this.infoService.access_token = result.access_token
     })
   }
@@ -51,13 +52,32 @@ export class SolicitacaoFormComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
+  public cpfcnpjmask = function (rawValue) {
+    let numbers = rawValue.match(/\d/g);
+    let numberLength = 0;
+    if (numbers) {
+      numberLength = numbers.join('').length;
+    }
+    if (numberLength <= 11) {
+      return [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
+    } else {
+      return [/[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
+    }
+  }
+
+  public phoneMask = function (rawValue){
+    let numbers = rawValue.match(/\d/g);
+    let numberLength = 0;
+    
+  }
+
   submit() {
-    this.infoService.gerarPedido()
+    const data = this.profileForm.value
+    this.infoService.gerarPedido(data)
   }
 
   onClick(info) {
     if (info === 'Entregar no endereço') {
-      debugger
       this.profileForm.controls['cep'].setValidators([Validators.required])
       this.profileForm.controls['endereco'].setValidators([Validators.required])
       this.profileForm.controls['numero'].setValidators([Validators.required])
@@ -66,26 +86,24 @@ export class SolicitacaoFormComponent implements OnInit {
       this.profileForm.controls['cidade'].setValidators([Validators.required])
       this.profileForm.controls['estado'].setValidators([Validators.required])
       console.log('endereço required');
-      
-    }else{
-      debugger
-      this.profileForm.controls['cep'].setValidators([])
-      this.profileForm.controls['endereco'].setValidators([])
-      this.profileForm.controls['numero'].setValidators([])
-      this.profileForm.controls['complemento'].setValidators([])
-      this.profileForm.controls['bairro'].setValidators([])
-      this.profileForm.controls['cidade'].setValidators([])
-      this.profileForm.controls['estado'].setValidators([])
-    
+    } else {
+      this.profileForm.get('cep').clearValidators();
+      this.profileForm.get('endereco').clearValidators();
+      this.profileForm.get('numero').clearValidators();
+      this.profileForm.get('complemento').clearValidators();
+      this.profileForm.get('bairro').clearValidators();
+      this.profileForm.get('cidade').clearValidators();
+      this.profileForm.get('estado').clearValidators();
+      this.profileForm.get('cep').updateValueAndValidity();
+      this.profileForm.get('endereco').updateValueAndValidity();
+      this.profileForm.get('numero').updateValueAndValidity();
+      this.profileForm.get('complemento').updateValueAndValidity();
+      this.profileForm.get('bairro').updateValueAndValidity();
+      this.profileForm.get('cidade').updateValueAndValidity();
+      this.profileForm.get('estado').updateValueAndValidity();
       console.log('endereço not required');
-      
     }
-
-
     console.log(this.profileForm.valid)
-
-
-
   }
 
 

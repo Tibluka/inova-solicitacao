@@ -19,19 +19,25 @@ interface arrayConsulta {
       livro_ato: string;
       mensagem: string;
       nome_partes: string;
+
       solicitante: {
         email: string;
         nome: string;
-        tipo_pessoa: string;
-        numero_cpfcnpj: string;
-        numero_ordem_cnpj: string;
-        numero_digito_cpfcnpj: string;
+        cpf_cnpj: string;
         telefone: string;
       },
       status: string;
       tipo_ato: string;
     }
-  ]
+  ],
+  tipo_retirada: string;
+
+}
+
+interface tokenInterface {
+  access_token: string;
+  expires_in: number;
+  token_type: string;
 }
 
 @Injectable({
@@ -39,57 +45,65 @@ interface arrayConsulta {
 })
 export class InfoService {
 
+  buscarSolicitacao = false
+  temEndereco = false
   access_token
   opcaoEntregaSelecionada: string = 'Retirar no cartório';
   opcoesEntrega: string[] = ['Retirar no cartório', 'Entregar no endereço'];
   arraySolicitacoes: arrayConsulta
+  codigo_solicitacao: number
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
 
-  gerarPedido(){
-   
-    const data = 
+  gerarPedido(inputs) {
+    const data =
     {
-      nome_partes: "Carlos manuel, josélison",
-      tipo_ato: "Tipo_1222",
-      livro: "31",
-      folha: "123",
+      nome_partes: inputs.nome_partes,
+      tipo_ato: inputs.tipo_ato,
+      livro: inputs.livro_ato,
+      folha: inputs.folha_ato,
       forma_entrega: 2,
       endereco: {
-        cep: "02220070",
-        logradouro: "R. Teste",
-        numero: "12",
-        complemento: "dfasddfs",
-        bairro: "Vila cabanona",
-        cidade: "São Paulo",
-        uf: "SP"
+        cep: inputs.cep,
+        logradouro: inputs.logradouro,
+        numero: inputs.numero,
+        complemento: inputs.complemento,
+        bairro: inputs.bairro,
+        cidade: inputs.cidade,
+        uf: inputs.uf
       },
-      dados_solicitante : {
-        nome: "Carlos gomes",
-        tipoPessoa: "F",
-        numeroCpfCnpj: 41345243855,
-        numeroOrdemCpfCnpj: 0,
-        numeroDigitoCpfCnpj: 11,
-        email: "teste@teste.com",
-        telefone: 1112341234
+      dados_solicitante: {
+        nome: inputs.nome,
+        cpf_cnpj: inputs.cpf_cnpj,
+        email: inputs.email,
+        telefone: inputs.telefone
       },
-      mensagem: "Mensagem Exemplo"
+      mensagem: inputs.mensagem
     }
     this.apiService.setHeader(this.access_token)
-    console.log(this.access_token);
-    
+    console.log(data);
+
     this.apiService.postApi<any>('dev/solicitacoes', data).subscribe(result => {
       console.log(result)
     })
   }
 
+  consultar(id) {
+    if (this.codigo_solicitacao == null || this.codigo_solicitacao == 0) {
+      alert('Insira um código')
+    } else {
+      this.apiService.setHeader(this.access_token)
+      this.apiService.getApi('dev/solicitacoes/' + id).subscribe((res: arrayConsulta) => {
+        this.arraySolicitacoes = res
+        console.log(this.arraySolicitacoes)
+        this.buscarSolicitacao = true
+        if(this.arraySolicitacoes.tipo_retirada === '1'){
+          this.temEndereco = false
+        }else if (this.arraySolicitacoes.tipo_retirada === '2'){
+          this.temEndereco = true
+        }
+      })
+    }
 
-  consultar(){
-    this.apiService.setHeader(this.access_token)
-    this.apiService.getApi('dev/solicitacoes').subscribe((res: arrayConsulta) => {
-      console.log(res.solicitacoes);
-      this.arraySolicitacoes = res
-    })
   }
-
 }

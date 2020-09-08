@@ -19,6 +19,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { TextMaskModule } from 'angular2-text-mask';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -47,7 +49,9 @@ import { MatRadioModule } from '@angular/material/radio';
     MatSelectModule,
     MatRadioModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TextMaskModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SolicitacaoFormModule { }

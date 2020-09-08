@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const TOKEN_URL = " https://inova-pgto.auth.us-west-2.amazoncognito.com/oauth2"
+const TOKEN_URL = "https://inova-pgto.auth.us-west-2.amazoncognito.com/oauth2"
 
 const httpOptions = {
   headers: new HttpHeaders(

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'inova-solicitacoes';
+  title = 'inova-pagamentos';
+
+  get loading() {
+    return this.loadingService.isActive
+  }
+  constructor(
+    public loadingService: LoadingService,
+    private cdr: ChangeDetectorRef
+  ) { }
+
+  ngAfterViewChecked() {
+    this.cdr.detectChanges();
+  }
 }
