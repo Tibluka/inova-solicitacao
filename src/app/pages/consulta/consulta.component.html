@@ -19,6 +19,7 @@
     <mat-card class="example-card" *ngIf="infoService.buscarSolicitacao">
         <mat-card-content>
             <div class="info">
+                <h3>Informações da solicitação</h3>
                 <p> <strong>Código da solicitação:</strong> {{this.infoService.arraySolicitacoes?.codigo}} </p>
                 <p> <strong>Data da solicitação:</strong> {{this.infoService.arraySolicitacoes?.data_criacao}} </p>
                 <p> <strong>Nomes das partes:</strong> {{this.infoService.arraySolicitacoes?.nome_partes}} </p>
@@ -44,8 +45,10 @@
                     <p><strong>UF:</strong> {{this.infoService.arraySolicitacoes?.endereco?.uf}}</p>
                 </div>
             </div>
-            <div class="files">
-
+            <div class="files" *ngIf="this.infoService.arraySolicitacoes?.uploads[0].s3_url != null">
+                <hr>
+                <h3>Arquivos</h3>
+                <a *ngFor="let url of this.infoService.arraySolicitacoes?.uploads" href="{{url.s3_url}}"> <strong>Link para download: </strong>{{url.s3_url}}</a>
             </div>
         </mat-card-content>
     </mat-card>

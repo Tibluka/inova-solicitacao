@@ -1,4 +1,8 @@
 .content {
+    a:link {
+        text-decoration: none;
+        color: black;
+    }
     margin: 30px 50px;
     .filter {
         display: flex;
@@ -14,13 +18,9 @@
     .example-card {
         mat-card-content {
             width: 100%;
-            .info {
-            }
-            .files {
-                h3 {
-                    font-size: 14pt;
-                    font-weight: 300;
-                }
+            h3 {
+                font-size: 14pt;
+                font-weight: 300;
             }
         }
     }
