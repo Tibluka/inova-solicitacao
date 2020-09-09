@@ -6,8 +6,7 @@
             <input matInput placeholder="Ex. A1234" value="" [(ngModel)]="this.infoService.codigo_solicitacao">
         </mat-form-field>
         <div class="action">
-            <button style="margin-right: 15px;" routerLink="/" mat-raised-button class="btn" color="primary">Nova solicitação
-            </button>
+          
             <button
                 [disabled]="this.infoService?.codigo_solicitacao === null || this.infoService?.codigo_solicitacao === ''"
                 mat-raised-button class="btn" color="primary"
