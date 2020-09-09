@@ -118,7 +118,6 @@ export class SolicitacaoFormComponent implements OnInit {
       this.profileForm.controls['bairro'].setValidators([Validators.required])
       this.profileForm.controls['cidade'].setValidators([Validators.required])
       this.profileForm.controls['uf'].setValidators([Validators.required])
-      console.log('endereço required')
     } else {
       this.infoService.forma_entrega = 1
       this.profileForm.get('cep').clearValidators();
@@ -135,7 +134,6 @@ export class SolicitacaoFormComponent implements OnInit {
       this.profileForm.get('bairro').updateValueAndValidity();
       this.profileForm.get('cidade').updateValueAndValidity();
       this.profileForm.get('uf').updateValueAndValidity();
-      console.log('endereço not required');
     }
     console.log(this.profileForm.valid)
   }

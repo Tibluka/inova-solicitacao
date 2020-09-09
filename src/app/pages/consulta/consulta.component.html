@@ -5,7 +5,7 @@
             <mat-label>Consultar solicitação</mat-label>
             <input matInput placeholder="Ex. A1234" value="" [(ngModel)]="this.infoService.codigo_solicitacao">
         </mat-form-field>
-        <button mat-raised-button class="btn" color="primary"
+        <button [disabled]="this.infoService?.codigo_solicitacao === null || this.infoService?.codigo_solicitacao === ''" mat-raised-button class="btn" color="primary"
             (click)="this.infoService.consultar(this.infoService.codigo_solicitacao)">Primary</button>
     </div>
     <hr>

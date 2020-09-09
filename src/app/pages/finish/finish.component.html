@@ -2,12 +2,12 @@
     <mat-card class="example-card">
         <mat-card-content>
             <div class="address">
-                <img src="../../../assets/images/success.png" alt="">
+                <img src="../../../assets/images/success.png" alt="success_icon">
                 <h1>Solicitação enviada com sucesso!</h1>
                
-                <p><strong>Código da solicitação: </strong> 21hf12dgf2d1s231</p>
+                <p><strong>Código da solicitação: </strong> {{this.infoService.arraySolicitacoes?.codigo}}</p>
              
-                <p><strong>Data da solicitação:</strong> 21/09/2020</p>
+                <p><strong>Data da solicitação:</strong> {{this.infoService.arraySolicitacoes?.data_criacao}}</p>
             </div>
         </mat-card-content>
     </mat-card>

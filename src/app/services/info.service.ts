@@ -54,7 +54,7 @@ export class InfoService {
   forma_entrega = 1
   opcoesEntrega: string[] = ['Retirar no cartório', 'Entregar no endereço'];
   arraySolicitacoes: arrayConsulta
-  codigo_solicitacao: number
+  codigo_solicitacao: number = null
   base64 = []
 
   constructor(private apiService: ApiService, public loadingService: LoadingService, public router: Router) { }
@@ -66,7 +66,7 @@ export class InfoService {
       tipo_ato: inputs.tipo_ato,
       livro: inputs.livro_ato,
       folha: inputs.folha_ato,
-      forma_entrega: 1,
+      forma_entrega: this.forma_entrega,
       endereco: {
         cep: inputs.cep,
         logradouro: inputs.logradouro,
@@ -88,9 +88,9 @@ export class InfoService {
     console.log(data);
     this.apiService.postApi<any>('dev/solicitacoes', data).subscribe(result => {
       console.log(result)
-      this.loadingService.isActive = false
+      this.uploadArquivo(result.solicitacao.codigo)
     }, error => {
-      this.uploadArquivo('6d3b0863-efa6-11ea-924e-0af504ceb319')
+      this.loadingService.isActive = false
     })
   }
 
@@ -98,34 +98,26 @@ export class InfoService {
     this.apiService.postFork('dev/solicitacoes/' + userCode + '/uploads', this.base64).subscribe(res => {
       console.log(res)
       this.loadingService.isActive = false
-      this.router.navigate(['/finish'])
-
+      this.router.navigate(['/finish/' + userCode])
     })
   }
 
   consultar(id) {
+    
     this.loadingService.isActive = true
-    if (this.codigo_solicitacao == null || this.codigo_solicitacao == 0) {
-      alert('Insira um código')
+    this.apiService.setHeader(this.access_token)
+    
+    this.apiService.getApi('dev/solicitacoes/' + id).subscribe((res: arrayConsulta) => {
+      
+      this.arraySolicitacoes = res
+      console.log(this.arraySolicitacoes)
+      this.buscarSolicitacao = true
+      this.temEndereco = true
       this.loadingService.isActive = false
-    } else {
-      this.apiService.setHeader(this.access_token)
-      this.apiService.getApi('dev/solicitacoes/' + id).subscribe((res: arrayConsulta) => {
-        this.arraySolicitacoes = res
-        console.log(this.arraySolicitacoes)
-        this.buscarSolicitacao = true
-        this.temEndereco = true
-        this.loadingService.isActive = false
-
-      }, error => {
-        this.loadingService.isActive = false
-        this.temEndereco = false
-        this.buscarSolicitacao = false
-      })
-    }
+    }, error => {
+      this.loadingService.isActive = false
+      this.temEndereco = false
+      this.buscarSolicitacao = false
+    })
   }
-
-
-
-
 }
