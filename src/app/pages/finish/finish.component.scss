@@ -1,5 +1,6 @@
 .content {
     display: flex;
+    flex-direction: column;
     justify-items: center;
     .example-card {
         flex: 1;

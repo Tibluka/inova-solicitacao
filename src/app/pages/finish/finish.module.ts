@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FinishRoutingModule } from './finish-routing.module';
 import { FinishComponent } from './finish.component';
 import { MatCardModule } from '@angular/material/card';
-
-
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -14,7 +13,8 @@ import { MatCardModule } from '@angular/material/card';
   imports: [
     CommonModule,
     FinishRoutingModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ]
 })
 export class FinishModule { }
