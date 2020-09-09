@@ -38,7 +38,7 @@
     <div class="d-flex">
       <mat-form-field class="example-full-width mr">
         <mat-label>CEP</mat-label>
-        <input formControlName="cep" matInput>
+        <input mask="00000-000" (keyup)="getCep(profileForm.get('cep').value)" formControlName="cep" matInput>
       </mat-form-field>
       <mat-form-field class="example-full-width ml">
         <mat-label>Endereço</mat-label>

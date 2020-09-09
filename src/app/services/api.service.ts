@@ -29,6 +29,10 @@ export class ApiService {
   constructor(private http: HttpClient) {
   }
 
+  getCepApi<T>(params): Observable<T>{
+    return this.http.get<T>(params)
+  }
+
   getApi<T>(params): Observable<T> {
     return this.http.get<T>(environment.url + params, this.httpOptions)
   }

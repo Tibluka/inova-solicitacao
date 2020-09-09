@@ -6,6 +6,16 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ApiService } from 'src/app/services/api.service';
+import { BuscaCepService } from 'src/app/services/busca-cep.service';
+
+interface buscaCep {
+  cep: string;
+  logradouro: string,
+  complemento: string,
+  bairro: string,
+  localidade: string;
+  uf: string
+}
 
 interface tokenInterface {
   access_token: string;
@@ -50,7 +60,8 @@ export class SolicitacaoFormComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public tokenService: TokenService,
     public loadingService: LoadingService,
-    private apiService: ApiService) {
+    private apiService: ApiService,
+    private buscaCepService: BuscaCepService) {
   }
 
   ngOnInit(): void {
@@ -83,6 +94,17 @@ export class SolicitacaoFormComponent implements OnInit {
     }
   }
 
+  getCep(params) {
+    if (this.profileForm.get('cep').value.length === 8) {
+      this.apiService.getCepApi(this.buscaCepService.url + params + '/json').subscribe((res: buscaCep) => {
+        this.profileForm.get('logradouro').setValue(res.logradouro)
+        this.profileForm.get('bairro').setValue(res.bairro)
+        this.profileForm.get('cidade').setValue(res.localidade)
+        this.profileForm.get('uf').setValue(res.uf)
+      })
+    }
+  }
+
   handleFileChange(event) {
     const target = event.target
     const { files } = target /* ====  const files = target.files */
@@ -96,7 +118,7 @@ export class SolicitacaoFormComponent implements OnInit {
           this.infoService.base64.push({
             nome_arquivo: element.name,
             base64 /* == base64: base64 */
-          })  
+          })
         }
         reader.readAsDataURL(element)
       }
@@ -135,6 +157,5 @@ export class SolicitacaoFormComponent implements OnInit {
       this.profileForm.get('cidade').updateValueAndValidity();
       this.profileForm.get('uf').updateValueAndValidity();
     }
-    console.log(this.profileForm.valid)
   }
 }
