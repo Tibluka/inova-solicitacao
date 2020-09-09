@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { HttpHeaders } from '@angular/common/http';
 import { LoadingService } from './loading.service';
+import { Router } from '@angular/router';
 
 interface arrayConsulta {
   resumo: [
@@ -54,8 +55,9 @@ export class InfoService {
   opcoesEntrega: string[] = ['Retirar no cartório', 'Entregar no endereço'];
   arraySolicitacoes: arrayConsulta
   codigo_solicitacao: number
+  base64 = []
 
-  constructor(private apiService: ApiService, public loadingService: LoadingService) { }
+  constructor(private apiService: ApiService, public loadingService: LoadingService, public router: Router) { }
 
   gerarPedido(inputs) {
     const data =
@@ -88,7 +90,15 @@ export class InfoService {
       console.log(result)
       this.loadingService.isActive = false
     }, error => {
+      this.uploadArquivo('6d3b0863-efa6-11ea-924e-0af504ceb319')
+    })
+  }
+
+  uploadArquivo(userCode) {
+    this.apiService.postFork('dev/solicitacoes/' + userCode + '/uploads', this.base64).subscribe(res => {
+      console.log(res)
       this.loadingService.isActive = false
+      this.router.navigate(['/finish'])
 
     })
   }
@@ -113,6 +123,9 @@ export class InfoService {
         this.buscarSolicitacao = false
       })
     }
-
   }
+
+
+
+
 }

@@ -10,7 +10,6 @@ const httpOptions = {
       'Authorization': 'Basic NTZyODNnNHFmcG1lZHMxc3ZqN2tuYm80ODE6MWwzbWw1dWZjNDlsYmllMXZiODRqODZlOHRqNWZldjJob2sxM3E5Zmxmbm5kODBmazFsMg=='
     }
   ),
-  
 };
 
 @Injectable({

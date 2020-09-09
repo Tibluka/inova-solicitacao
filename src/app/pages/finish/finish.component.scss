@@ -1,0 +1,18 @@
+.content {
+    display: flex;
+    justify-items: center;
+    .example-card {
+        flex: 1;
+        margin: 200px 500px;
+        mat-card-content {
+            text-align: center;
+            .address{
+                img{
+                    width: 70px;
+                    height: 70px;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}

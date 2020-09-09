@@ -111,6 +111,8 @@
     <textarea required formControlName="mensagem" matInput placeholder="Ex. It makes me feel..."></textarea>
   </mat-form-field>
 
+  <input type="file" (change)="handleFileChange($event)" multiple>
+
   <div class="text-right">
     <button [disabled]="profileForm.invalid" mat-raised-button color="primary" class="btn">Solicitar</button>
   </div>

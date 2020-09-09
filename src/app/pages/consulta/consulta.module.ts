@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { ConsultaRoutingModule } from './consulta-routing.module';
 import { ConsultaComponent } from './consulta.component';
-import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,7 +18,6 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ConsultaRoutingModule,
-    MatTableModule,
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,

@@ -5,6 +5,7 @@ import { TokenService } from '../../services/token.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { LoadingService } from 'src/app/services/loading.service';
+import { ApiService } from 'src/app/services/api.service';
 
 interface tokenInterface {
   access_token: string;
@@ -20,9 +21,9 @@ interface tokenInterface {
 
 export class SolicitacaoFormComponent implements OnInit {
 
-get phoneMask(){
-  return this.isPhone() ? '(00) 0000-00009' : '(00) 00000-0000'
-}
+  get phoneMask() {
+    return this.isPhone() ? '(00) 0000-00009' : '(00) 00000-0000'
+  }
 
   profileForm = this.fb.group({
     nome_partes: ['asd'],
@@ -48,13 +49,15 @@ get phoneMask(){
     public infoService: InfoService,
     private cdr: ChangeDetectorRef,
     public tokenService: TokenService,
-    public loadingService: LoadingService) {
+    public loadingService: LoadingService,
+    private apiService: ApiService) {
   }
 
   ngOnInit(): void {
     this.loadingService.isActive = true
     this.tokenService.getToken().subscribe((result: tokenInterface) => {
       this.infoService.access_token = result.access_token
+      this.apiService.setHeader(result.access_token)
       this.loadingService.isActive = false
     })
   }
@@ -63,7 +66,7 @@ get phoneMask(){
     this.cdr.detectChanges();
   }
 
-  isPhone(){   
+  isPhone() {
     return this.profileForm.get('telefone').value.length <= 10
   }
 
@@ -79,7 +82,26 @@ get phoneMask(){
       return [/[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
     }
   }
-  
+
+  handleFileChange(event) {
+    const target = event.target
+    const { files } = target /* ====  const files = target.files */
+    for (let element of files) {
+      if (files && files[0]) {
+        const reader = new FileReader();
+        reader.onload = event => {
+          const dataUri = event.target.result as string;
+          const base64 = dataUri.replace(/^data:.+;base64,/, '')
+          console.log(base64)
+          this.infoService.base64.push({
+            nome_arquivo: element.name,
+            base64 /* == base64: base64 */
+          })  
+        }
+        reader.readAsDataURL(element)
+      }
+    }
+  }
 
   submit() {
     this.loadingService.isActive = true
@@ -96,7 +118,7 @@ get phoneMask(){
       this.profileForm.controls['bairro'].setValidators([Validators.required])
       this.profileForm.controls['cidade'].setValidators([Validators.required])
       this.profileForm.controls['uf'].setValidators([Validators.required])
-      console.log('endereço required');
+      console.log('endereço required')
     } else {
       this.infoService.forma_entrega = 1
       this.profileForm.get('cep').clearValidators();
