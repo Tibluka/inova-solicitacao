@@ -7,11 +7,47 @@
         margin: 200px 500px;
         mat-card-content {
             text-align: center;
-            .address{
-                img{
+            .address {
+                img {
                     width: 70px;
                     height: 70px;
                     margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1630px) {
+    .content {
+        .example-card {
+            margin: 150px 200px;
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .content {
+        .example-card {
+            margin: 100px;
+        }
+    }
+}
+
+@media (max-width: 630px) {
+    .content {
+        .example-card {
+            margin: 80px 50px;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .content {
+        .example-card {
+            mat-card-content{
+                button{
+                    width: fit-content !important;
                 }
             }
         }
