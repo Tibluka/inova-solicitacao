@@ -5,8 +5,16 @@
             <mat-label>Consultar solicitação</mat-label>
             <input matInput placeholder="Ex. A1234" value="" [(ngModel)]="this.infoService.codigo_solicitacao">
         </mat-form-field>
-        <button [disabled]="this.infoService?.codigo_solicitacao === null || this.infoService?.codigo_solicitacao === ''" mat-raised-button class="btn" color="primary"
-            (click)="this.infoService.consultar(this.infoService.codigo_solicitacao)">Primary</button>
+        <div style="display: flex;">
+            <button style="margin-right: 15px;" routerLink="/solicitacao" mat-raised-button class="btn" color="primary">Nova solicitação
+            </button>
+            <button
+                [disabled]="this.infoService?.codigo_solicitacao === null || this.infoService?.codigo_solicitacao === ''"
+                mat-raised-button class="btn" color="primary"
+                (click)="this.infoService.consultar(this.infoService.codigo_solicitacao)">Consultar
+            </button>
+        </div>
+
     </div>
     <hr>
     <mat-card class="example-card" *ngIf="infoService.buscarSolicitacao">
@@ -24,7 +32,7 @@
                 <p> <strong>Email:</strong> {{this.infoService.arraySolicitacoes?.solicitante?.email}} </p>
                 <p> <strong>CPF/CNPJ:</strong> {{this.infoService.arraySolicitacoes?.solicitante?.cpf_cnpj}} </p>
                 <p> <strong>Telefone:</strong> {{this.infoService.arraySolicitacoes?.solicitante?.cpf_cnpj}} </p>
-                
+
                 <div class="address" *ngIf="infoService.arraySolicitacoes?.tipo_retirada === 2">
                     <hr>
                     <h3>Endereço</h3>
