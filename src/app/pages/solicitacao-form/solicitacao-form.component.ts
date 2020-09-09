@@ -116,9 +116,11 @@ export class SolicitacaoFormComponent implements OnInit {
           const base64 = dataUri.replace(/^data:.+;base64,/, '')
           console.log(base64)
           this.infoService.base64.push({
-            nome_arquivo: element.name,
+            nome_arquivo: element.name.toLowerCase(),
             base64 /* == base64: base64 */
           })
+          console.log(this.infoService.base64);
+          
         }
         reader.readAsDataURL(element)
       }

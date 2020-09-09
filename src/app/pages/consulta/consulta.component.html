@@ -48,7 +48,7 @@
             <div class="files" *ngIf="this.infoService.arraySolicitacoes?.uploads[0].s3_url != null">
                 <hr>
                 <h3>Arquivos</h3>
-                <a *ngFor="let url of this.infoService.arraySolicitacoes?.uploads" href="{{url.s3_url}}"> <strong>Link para download: </strong>{{url.s3_url}}</a>
+                <a *ngFor="let url of this.infoService.arraySolicitacoes?.uploads" href="{{url.s3_url}}" target="_blank"> <strong>Link para download: </strong>{{url.s3_url}}</a>
             </div>
         </mat-card-content>
     </mat-card>
