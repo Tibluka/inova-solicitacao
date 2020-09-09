@@ -5,6 +5,8 @@ import { LoadingService } from './loading.service';
 import { Router } from '@angular/router';
 
 interface arrayConsulta {
+  codigo: number;
+  data_criacao: Date;
   resumo: [
     {
       descricao: string;
