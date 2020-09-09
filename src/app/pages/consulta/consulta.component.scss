@@ -4,6 +4,9 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 15px;
+        .action {
+            display: flex;
+        }
         mat-form-field {
             width: 250px;
         }
@@ -25,4 +28,31 @@
 hr {
     margin: 20px 0;
     opacity: 0.3;
+}
+
+@media (max-width: 880px) {
+    .content {
+        .filter {
+            flex-direction: column;
+        }
+        .action {
+            justify-content: space-between;
+            button {
+                width: 100% !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        margin: 30px 20px;
+        .action {
+            flex-direction: column;
+            button {
+                margin-top: 5px;
+                width: 100% !important;
+            }
+        }
+    }
 }

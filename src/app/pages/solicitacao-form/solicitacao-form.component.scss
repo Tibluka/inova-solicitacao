@@ -2,7 +2,7 @@
     margin: 0 50px;
 }
 
-.title-section{
+.title-section {
     font-size: 13pt;
     font-weight: 300;
 }
@@ -38,4 +38,33 @@
 
 .example-radio-button {
     margin: 5px;
+}
+
+@media (max-width: 610px) {
+    .text-right {
+        flex-direction: column;
+        button {
+            width: 100% !important;
+            margin-top: 5px;
+        }
+    }
+}
+
+@media (max-width: 470px) {
+    .ml{
+        margin: 0;
+    }
+    .mr{
+        margin: 0;
+    }
+    .example-form {
+        margin: 30px 20px;
+    }
+    
+    .d-flex {
+        flex-direction: column;
+    }
+    mat-radio-group{
+        flex-direction: column;
+    }
 }
