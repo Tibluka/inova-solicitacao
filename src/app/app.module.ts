@@ -7,9 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

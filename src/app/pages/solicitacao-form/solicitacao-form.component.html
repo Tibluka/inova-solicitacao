@@ -42,7 +42,7 @@
       </mat-form-field>
       <mat-form-field class="example-full-width ml">
         <mat-label>Endereço</mat-label>
-        <input formControlName="endereco" matInput>
+        <input formControlName="logradouro" matInput>
       </mat-form-field>
       <mat-form-field class="example-full-width ml">
         <mat-label>Número</mat-label>
@@ -70,7 +70,7 @@
 
       <mat-form-field class="example-full-width ml">
         <mat-label>Estado</mat-label>
-        <input formControlName="estado" matInput>
+        <input formControlName="uf" matInput>
       </mat-form-field>
     </div>
   </div>
@@ -101,7 +101,7 @@
 
     <mat-form-field class="example-full-width ml">
       <mat-label>Telefone/Celular</mat-label>
-      <input required formControlName="telefone" mask="(00) 00000-0000" matInput>
+      <input required formControlName="telefone" [mask]="phoneMask" matInput>
     </mat-form-field>
 
   </div>

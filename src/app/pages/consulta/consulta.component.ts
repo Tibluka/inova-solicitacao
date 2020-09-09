@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InfoService } from 'src/app/services/info.service';
 import { TokenService } from 'src/app/services/token.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 interface tokenInterface{
   access_token: string;
@@ -16,17 +17,15 @@ interface tokenInterface{
 
 export class ConsultaComponent implements OnInit {
 
-  constructor(public infoService: InfoService, public tokenService: TokenService) { }
+  constructor(public infoService: InfoService, public tokenService: TokenService, public loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.infoService.buscarSolicitacao = false
-    
+    this.loadingService.isActive = true
     this.tokenService.getToken().subscribe((result: tokenInterface) => {
       this.infoService.access_token = result.access_token
-      console.log(this.infoService.buscarSolicitacao);
-      
- 
-   })
+      this.loadingService.isActive = false
+    })
   }
 
 }

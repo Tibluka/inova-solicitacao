@@ -11,7 +11,6 @@
     <hr>
     <mat-card class="example-card" *ngIf="infoService.buscarSolicitacao">
         <mat-card-content>
-            {{this.infoService.arraySolicitacoes |json}}
             <div class="info">
                 <p> <strong>Código da solicitação:</strong> {{this.infoService.arraySolicitacoes?.codigo}} </p>
                 <p> <strong>Data da solicitação:</strong> {{this.infoService.arraySolicitacoes?.data_criacao}} </p>
@@ -21,32 +20,25 @@
                 <p> <strong>Folha ato</strong> {{this.infoService.arraySolicitacoes?.folha_ato}} </p>
                 <p> <strong>Mensagem</strong> {{this.infoService.arraySolicitacoes?.mensagem}} </p>
                 <p> <strong>Status</strong> {{this.infoService.arraySolicitacoes?.status.descricao}} </p>
-                <p> <strong>Nome do solicitante:</strong> {{this.infoService.arraySolicitacoes?.solicitante.nome}} </p>
-                <p> <strong>Email:</strong> {{this.infoService.arraySolicitacoes?.solicitante.email}} </p>
-                <p> <strong>CPF/CNPJ:</strong> {{this.infoService.arraySolicitacoes?.solicitante.cpf_cnpj}} </p>
-                <p> <strong>Telefone:</strong> {{this.infoService.arraySolicitacoes?.solicitante.cpf_cnpj}} </p>
-                <div class="address" *ngIf="infoService.temEndereco">
+                <p> <strong>Nome do solicitante:</strong> {{this.infoService.arraySolicitacoes?.solicitante?.nome}} </p>
+                <p> <strong>Email:</strong> {{this.infoService.arraySolicitacoes?.solicitante?.email}} </p>
+                <p> <strong>CPF/CNPJ:</strong> {{this.infoService.arraySolicitacoes?.solicitante?.cpf_cnpj}} </p>
+                <p> <strong>Telefone:</strong> {{this.infoService.arraySolicitacoes?.solicitante?.cpf_cnpj}} </p>
+                
+                <div class="address" *ngIf="infoService.arraySolicitacoes?.tipo_retirada === 2">
+                    <hr>
                     <h3>Endereço</h3>
-                    <p><strong>CEP:</strong> {{this.infoService.arraySolicitacoes?.endereco.cep}}</p>
-                    <p><strong>Logradouro:</strong> {{this.infoService.arraySolicitacoes?.endereco.logradouro}}</p>
-                    <p><strong>Número:</strong> {{this.infoService.arraySolicitacoes?.endereco.numero}}</p>
-                    <p><strong>Complemento:</strong> {{this.infoService.arraySolicitacoes?.endereco.complemento}}</p>
-                    <p><strong>Bairro:</strong> {{this.infoService.arraySolicitacoes?.endereco.bairro}}</p>
-                    <p><strong>Cidade:</strong> {{this.infoService.arraySolicitacoes?.endereco.cidade}}</p>
-                    <p><strong>UF:</strong> {{this.infoService.arraySolicitacoes?.endereco.uf}}</p>
+                    <p><strong>CEP:</strong> {{this.infoService.arraySolicitacoes?.endereco?.cep}}</p>
+                    <p><strong>Logradouro:</strong> {{this.infoService.arraySolicitacoes?.endereco?.logradouro}}</p>
+                    <p><strong>Número:</strong> {{this.infoService.arraySolicitacoes?.endereco?.numero}}</p>
+                    <p><strong>Complemento:</strong> {{this.infoService.arraySolicitacoes?.endereco?.complemento}}</p>
+                    <p><strong>Bairro:</strong> {{this.infoService.arraySolicitacoes?.endereco?.bairro}}</p>
+                    <p><strong>Cidade:</strong> {{this.infoService.arraySolicitacoes?.endereco?.cidade}}</p>
+                    <p><strong>UF:</strong> {{this.infoService.arraySolicitacoes?.endereco?.uf}}</p>
                 </div>
-
             </div>
-            <hr>
             <div class="files">
-                <h3>Endereço</h3>
-                <p><strong>CEP:</strong> {{this.infoService.arraySolicitacoes?.endereco.cep}}</p>
-                <p><strong>Logradouro:</strong> {{this.infoService.arraySolicitacoes?.endereco.logradouro}}</p>
-                <p><strong>Número:</strong> {{this.infoService.arraySolicitacoes?.endereco.numero}}</p>
-                <p><strong>Complemento:</strong> {{this.infoService.arraySolicitacoes?.endereco.complemento}}</p>
-                <p><strong>Bairro:</strong> {{this.infoService.arraySolicitacoes?.endereco.bairro}}</p>
-                <p><strong>Cidade:</strong> {{this.infoService.arraySolicitacoes?.endereco.cidade}}</p>
-                <p><strong>UF:</strong> {{this.infoService.arraySolicitacoes?.endereco.uf}}</p>
+
             </div>
         </mat-card-content>
     </mat-card>
