@@ -47,6 +47,7 @@
         .example-card {
             mat-card-content{
                 button{
+                    margin: 0 !important;
                     width: fit-content !important;
                 }
             }
