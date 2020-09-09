@@ -90,7 +90,11 @@ export class InfoService {
     console.log(data);
     this.apiService.postApi<any>('dev/solicitacoes', data).subscribe(result => {
       console.log(result)
-      this.uploadArquivo(result.solicitacao.codigo)
+      if (!this.base64 === null) {
+        this.uploadArquivo(result.solicitacao.codigo)
+      }
+      this.router.navigate(['/finish/' + result.solicitacao.codigo])
+      this.loadingService.isActive = false
     }, error => {
       this.loadingService.isActive = false
     })
@@ -105,12 +109,12 @@ export class InfoService {
   }
 
   consultar(id) {
-    
+
     this.loadingService.isActive = true
     this.apiService.setHeader(this.access_token)
-    
+
     this.apiService.getApi('dev/solicitacoes/' + id).subscribe((res: arrayConsulta) => {
-      
+
       this.arraySolicitacoes = res
       console.log(this.arraySolicitacoes)
       this.buscarSolicitacao = true
