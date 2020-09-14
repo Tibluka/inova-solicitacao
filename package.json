@@ -9,7 +9,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-prod": "ng build --prod --aot --vendor-chunk --common-chunk --build-optimizer --delete-output-path --extractCss"
-
   },
   "private": true,
   "dependencies": {
@@ -25,6 +24,7 @@
     "@angular/router": "~10.0.6",
     "angular2-text-mask": "^9.0.0",
     "ngx-mask": "^10.0.1",
+    "node-correios": "^3.0.2",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

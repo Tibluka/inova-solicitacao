@@ -88,7 +88,7 @@ export class InfoService {
     }
     this.apiService.setHeader(this.access_token)
     console.log(data);
-    this.apiService.postApi<any>('dev/solicitacoes', data).subscribe(result => {
+    this.apiService.postApi<any>('/solicitacoes', data).subscribe(result => {
       console.log(result)
       console.log(this.base64);
       this.uploadArquivo(result.solicitacao.codigo)
@@ -101,7 +101,7 @@ export class InfoService {
   }
 
   uploadArquivo(userCode) {
-    this.apiService.postFork('dev/solicitacoes/' + userCode + '/uploads', this.base64).subscribe(res => {
+    this.apiService.postFork('/solicitacoes/' + userCode + '/uploads', this.base64).subscribe(res => {
       console.log(res)
       this.loadingService.isActive = false
       this.router.navigate(['/finish/' + userCode])
@@ -111,7 +111,7 @@ export class InfoService {
   consultar(id) {
     this.loadingService.isActive = true
     this.apiService.setHeader(this.access_token)
-    this.apiService.getApi('dev/solicitacoes/' + id).subscribe((res: arrayConsulta) => {
+    this.apiService.getApi('/solicitacoes/' + id).subscribe((res: arrayConsulta) => {
       this.arraySolicitacoes = res
       console.log(this.arraySolicitacoes)
       this.buscarSolicitacao = true
