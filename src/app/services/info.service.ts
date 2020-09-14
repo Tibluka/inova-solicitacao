@@ -113,7 +113,6 @@ export class InfoService {
     this.apiService.setHeader(this.access_token)
     this.apiService.getApi('/solicitacoes/' + id).subscribe((res: arrayConsulta) => {
       this.arraySolicitacoes = res
-      console.log(this.arraySolicitacoes)
       this.buscarSolicitacao = true
       this.temEndereco = true
       this.loadingService.isActive = false
