@@ -28,8 +28,8 @@
 
   <mat-radio-group required color="primary" aria-labelledby="example-radio-group-label" class="example-radio-group"
     [(ngModel)]="infoService.opcaoEntregaSelecionada" [ngModelOptions]="{standalone: true}">
-    <mat-radio-button (click)="onClick(opcaoEntregaSelecionada)" class="example-radio-button" *ngFor="let opcaoEntregaSelecionada of infoService.opcoesEntrega"
-      [value]="opcaoEntregaSelecionada">
+    <mat-radio-button (click)="onClick(opcaoEntregaSelecionada)" class="example-radio-button"
+      *ngFor="let opcaoEntregaSelecionada of infoService.opcoesEntrega" [value]="opcaoEntregaSelecionada">
       {{opcaoEntregaSelecionada}}
     </mat-radio-button>
   </mat-radio-group>
@@ -40,7 +40,7 @@
         <mat-label>CEP</mat-label>
         <input mask="00000-000" (keyup)="getCep(profileForm.get('cep').value)" formControlName="cep" matInput>
       </mat-form-field>
-      <mat-form-field class="example-full-width ml">
+      <mat-form-field class="example-full-width ml mr">
         <mat-label>Endereço</mat-label>
         <input formControlName="logradouro" matInput>
       </mat-form-field>
@@ -51,7 +51,7 @@
     </div>
 
     <div class="d-flex">
-      <mat-form-field class="example-full-width ml">
+      <mat-form-field class="example-full-width mr">
         <mat-label>Complemento</mat-label>
         <input formControlName="complemento" matInput>
       </mat-form-field>
@@ -63,7 +63,7 @@
     </div>
 
     <div class="d-flex">
-      <mat-form-field class="example-full-width ml">
+      <mat-form-field class="example-full-width mr">
         <mat-label>Cidade</mat-label>
         <input formControlName="cidade" matInput>
       </mat-form-field>
@@ -73,6 +73,15 @@
         <input formControlName="uf" matInput>
       </mat-form-field>
     </div>
+
+<!--     <div class="frete example-full-width">
+      <mat-card>
+        <h3>Frete</h3>
+      </mat-card>
+      <button type="button" (click)="buscaCepService.calcularFrete(profileForm.get('cep').value)">Calcular</button>
+    </div>
+ -->
+
   </div>
 
   <h1 class="title-section mt-30">
@@ -110,11 +119,25 @@
     <textarea required formControlName="mensagem" matInput placeholder="Digite uma mensagem"></textarea>
   </mat-form-field>
 
+<!--   <h1 class="title-section mt-30">
+    VALOR DO SERVIÇO
+  </h1>
+
+  <mat-card class="mb-30" >
+    <div>
+      <div class="example-full-width">
+        <h3>Frete</h3>
+      </div>
+      <div class="example-full-width">
+        <h3>Valor {{buscaCepService?.valor}}</h3>
+      </div>
+    </div>
+  </mat-card> -->
+
   <input type="file" (change)="handleFileChange($event)" multiple>
 
-  <div class="text-right" >
+  <div class="text-right">
     <button [disabled]="profileForm.invalid" mat-raised-button color="primary" class="btn">Solicitar</button>
   </div>
 
 </form>
-

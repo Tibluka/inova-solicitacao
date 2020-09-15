@@ -37,6 +37,11 @@ export class ApiService {
     return this.http.get<T>(environment.url + params, this.httpOptions)
   }
 
+  getApiCep<T>(params): Observable<T> {
+    return this.http.get<T>('https://f2rkl509o9.execute-api.us-west-2.amazonaws.com/Dev' + params, this.httpOptions)
+  }
+  
+
   postApi<T>(params, body): Observable<T> {
     return this.http.post<T>(environment.url + params, body, this.httpOptions)
   }

@@ -55,6 +55,8 @@ export class SolicitacaoFormComponent implements OnInit {
     mensagem: [''],
   })
 
+
+
   constructor(private fb: FormBuilder,
     public infoService: InfoService,
     private cdr: ChangeDetectorRef,
@@ -132,6 +134,8 @@ export class SolicitacaoFormComponent implements OnInit {
     this.loadingService.isActive = true
     this.infoService.gerarPedido(this.profileForm.value)
   }
+
+
 
   onClick(info) {
     if (info === 'Entregar no endereço') {
