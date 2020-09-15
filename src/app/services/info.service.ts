@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 import { HttpHeaders } from '@angular/common/http';
 import { LoadingService } from './loading.service';
 import { Router } from '@angular/router';
+import { BuscaCepService } from './busca-cep.service';
 
 interface arrayConsulta {
   codigo: number;
@@ -59,11 +60,11 @@ export class InfoService {
   codigo_solicitacao: number = null
   base64 = []
 
-  constructor(private apiService: ApiService, public loadingService: LoadingService, public router: Router) { }
+  constructor(private apiService: ApiService, public loadingService: LoadingService, public router: Router, public buscaCepService: BuscaCepService) { }
 
   gerarPedido(inputs) {
     console.log(inputs.entrega);
-    
+
     const data =
     {
       nome_partes: inputs.nome_partes,
@@ -86,7 +87,9 @@ export class InfoService {
         email: inputs.email,
         telefone: inputs.telefone.replace(/\D/g, '')
       },
-      mensagem: inputs.mensagem
+      mensagem: inputs.mensagem,
+      valor_solicitacao: this.buscaCepService.valorServico.toFixed(2),
+      valor_frete: this.buscaCepService.frete.toFixed(2)
     }
     this.apiService.setHeader(this.access_token)
     console.log(data);

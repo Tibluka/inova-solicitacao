@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  /*   url: 'https://f2rkl509o9.execute-api.us-west-2.amazonaws.com/Dev'
-   */
-  url: 'https://ut8oc1ljcf.execute-api.us-west-2.amazonaws.com/Prod'
+     url: 'https://f2rkl509o9.execute-api.us-west-2.amazonaws.com/Dev'
+   
+  /* url: 'https://ut8oc1ljcf.execute-api.us-west-2.amazonaws.com/Prod' */
 };
 
 /*
