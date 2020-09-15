@@ -68,7 +68,7 @@ export class SolicitacaoFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.infoService.forma_entrega = 1
-    this.infoService.opcaoEntregaSelecionada = 'Entregar no endereço'
+    this.infoService.opcaoEntregaSelecionada = 'Retirar no cartório'
     this.loadingService.isActive = true
     this.tokenService.getToken().subscribe((result: tokenInterface) => {
       this.infoService.access_token = result.access_token
