@@ -62,13 +62,15 @@ export class InfoService {
   constructor(private apiService: ApiService, public loadingService: LoadingService, public router: Router) { }
 
   gerarPedido(inputs) {
+    console.log(inputs.entrega);
+    
     const data =
     {
       nome_partes: inputs.nome_partes,
       tipo_ato: inputs.tipo_ato,
       livro: inputs.livro_ato,
       folha: inputs.folha_ato,
-      forma_entrega: this.forma_entrega,
+      forma_entrega: 2,
       endereco: {
         cep: inputs.cep,
         logradouro: inputs.logradouro,
@@ -89,10 +91,8 @@ export class InfoService {
     this.apiService.setHeader(this.access_token)
     console.log(data);
     this.apiService.postApi<any>('/solicitacoes', data).subscribe(result => {
-      console.log(result)
-      console.log(this.base64);
-      this.uploadArquivo(result.solicitacao.codigo)
 
+      this.uploadArquivo(result.solicitacao.codigo)
       this.router.navigate(['/finish/' + result.solicitacao.codigo])
       this.loadingService.isActive = false
     }, error => {

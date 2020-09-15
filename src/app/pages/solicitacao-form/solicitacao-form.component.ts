@@ -40,7 +40,7 @@ export class SolicitacaoFormComponent implements OnInit {
     tipo_ato: [''],
     livro_ato: [''],
     folha_ato: [''],
-    entrega: [this.infoService.opcaoEntregaSelecionada],
+    entrega: [1],
     cep: [''],
     logradouro: [''],
     numero: [''],
@@ -61,10 +61,12 @@ export class SolicitacaoFormComponent implements OnInit {
     public tokenService: TokenService,
     public loadingService: LoadingService,
     private apiService: ApiService,
-    private buscaCepService: BuscaCepService) {
+    public buscaCepService: BuscaCepService) {
   }
 
   ngOnInit(): void {
+    this.infoService.forma_entrega = 1
+    this.infoService.opcaoEntregaSelecionada = 'Retirar no cartório'
     this.loadingService.isActive = true
     this.tokenService.getToken().subscribe((result: tokenInterface) => {
       this.infoService.access_token = result.access_token
@@ -76,6 +78,8 @@ export class SolicitacaoFormComponent implements OnInit {
   ngAfterViewChecked() {
     this.cdr.detectChanges();
   }
+
+
 
   isPhone() {
     return this.profileForm.get('telefone').value.length <= 10
@@ -131,7 +135,6 @@ export class SolicitacaoFormComponent implements OnInit {
 
   onClick(info) {
     if (info === 'Entregar no endereço') {
-      this.infoService.forma_entrega = 2
       this.profileForm.controls['cep'].setValidators([Validators.required])
       this.profileForm.controls['logradouro'].setValidators([Validators.required])
       this.profileForm.controls['numero'].setValidators([Validators.required])
@@ -139,8 +142,9 @@ export class SolicitacaoFormComponent implements OnInit {
       this.profileForm.controls['bairro'].setValidators([Validators.required])
       this.profileForm.controls['cidade'].setValidators([Validators.required])
       this.profileForm.controls['uf'].setValidators([Validators.required])
+      this.profileForm.controls['entrega'].setValue(2)
+
     } else {
-      this.infoService.forma_entrega = 1
       this.profileForm.get('cep').clearValidators();
       this.profileForm.get('logradouro').clearValidators();
       this.profileForm.get('numero').clearValidators();
@@ -155,6 +159,8 @@ export class SolicitacaoFormComponent implements OnInit {
       this.profileForm.get('bairro').updateValueAndValidity();
       this.profileForm.get('cidade').updateValueAndValidity();
       this.profileForm.get('uf').updateValueAndValidity();
+      this.profileForm.controls['entrega'].setValue(1)
+
     }
   }
 }
