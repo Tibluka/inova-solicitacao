@@ -74,14 +74,6 @@
       </mat-form-field>
     </div>
 
-<!--     <div class="frete example-full-width">
-      <mat-card>
-        <h3>Frete</h3>
-      </mat-card>
-      <button type="button" (click)="buscaCepService.calcularFrete(profileForm.get('cep').value)">Calcular</button>
-    </div>
- -->
-
   </div>
 
   <h1 class="title-section mt-30">
@@ -119,22 +111,19 @@
     <textarea required formControlName="mensagem" matInput placeholder="Digite uma mensagem"></textarea>
   </mat-form-field>
 
-<!--   <h1 class="title-section mt-30">
-    VALOR DO SERVIÇO
+  <h1 class="title-section mt-30">
+    VALORES
   </h1>
 
-  <mat-card class="mb-30" >
-    <div>
-      <div class="example-full-width">
-        <h3>Frete</h3>
-      </div>
-      <div class="example-full-width">
-        <h3>Valor {{buscaCepService?.valor}}</h3>
-      </div>
-    </div>
-  </mat-card> -->
+  <p>Valor do serviço: {{buscaCepService?.valorServico | currency:'BRL':true}}</p>
+  <div *ngIf="profileForm.get('entrega').value == 2">
 
-  <input type="file" (change)="handleFileChange($event)" multiple>
+    <p>Frete: {{buscaCepService?.frete | currency:'BRL':true}}</p>
+    <p>Total: {{buscaCepService?.valorTotal | currency:'BRL':true}}</p>
+  </div>
+
+
+  <input style="margin-top: 30px;" type="file" (change)="handleFileChange($event)" multiple>
 
   <div class="text-right">
     <button [disabled]="profileForm.invalid" mat-raised-button color="primary" class="btn">Solicitar</button>

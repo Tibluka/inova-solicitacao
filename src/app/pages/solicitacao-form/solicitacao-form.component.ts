@@ -55,7 +55,7 @@ export class SolicitacaoFormComponent implements OnInit {
     mensagem: [''],
   })
 
-
+  
 
   constructor(private fb: FormBuilder,
     public infoService: InfoService,
@@ -68,7 +68,7 @@ export class SolicitacaoFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.infoService.forma_entrega = 1
-    this.infoService.opcaoEntregaSelecionada = 'Retirar no cartório'
+    this.infoService.opcaoEntregaSelecionada = 'Entregar no endereço'
     this.loadingService.isActive = true
     this.tokenService.getToken().subscribe((result: tokenInterface) => {
       this.infoService.access_token = result.access_token
@@ -102,6 +102,7 @@ export class SolicitacaoFormComponent implements OnInit {
 
   getCep(params) {
     if (this.profileForm.get('cep').value.length === 8) {
+      this.buscaCepService.calcularFrete(this.profileForm.get('cep').value)
       this.apiService.getCepApi(this.buscaCepService.url + params + '/json').subscribe((res: buscaCep) => {
         this.profileForm.get('logradouro').setValue(res.logradouro)
         this.profileForm.get('bairro').setValue(res.bairro)

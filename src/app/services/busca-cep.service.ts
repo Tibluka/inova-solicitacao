@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { LoadingService } from './loading.service';
 
-interface resCalcCep{
+interface resCalcCep {
   Servicos: {
     cServico: [
       {
@@ -11,7 +11,7 @@ interface resCalcCep{
           string
         ],
         Valor: [
-          string
+          number
         ],
         PrazoEntrega: [
           number
@@ -55,17 +55,18 @@ export class BuscaCepService {
 
   url = 'https://viacep.com.br/ws/'
   mostraValores = false
-  valor = ''
+  valor = 0
+  valorTotal = 0
+  valorServico = 67.20
+  frete = 0
 
   constructor(private apiService: ApiService,
     public loadingService: LoadingService,
     private http: HttpClient) {
-
   }
 
   getCep(params) {
     this.apiService.getCepApi(this.url + params + '/json').subscribe(res => {
-      console.log(res);
     })
   }
 
@@ -77,11 +78,15 @@ export class BuscaCepService {
       cepDestino).subscribe((res: resCalcCep) => {
         this.mostraValores = true
         this.loadingService.isActive = false
-        console.log(res.Servicos.cServico[0].Valor)
-        this.valor = res.Servicos.cServico[0].Valor as any
+        this.valor = res.Servicos.cServico[0].Valor[0]
+        this.calculaTotal(this.valor)
       })
   }
 
-
+  calculaTotal(valorFrete) {
+    let servico = this.valorServico
+    this.frete = parseInt(valorFrete)
+    this.valorTotal = servico += this.frete
+  }
 
 }
