@@ -21,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { TextMaskModule } from 'angular2-text-mask';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 
@@ -52,6 +53,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ReactiveFormsModule,
     TextMaskModule,
     MatProgressSpinnerModule
-  ]
+  ],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} }
+]
 })
 export class SolicitacaoFormModule { }

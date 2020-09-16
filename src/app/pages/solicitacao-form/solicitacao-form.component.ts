@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
 import { InfoService } from '../../services/info.service';
 import { TokenService } from '../../services/token.service';
 
@@ -7,6 +7,8 @@ import { Validators } from '@angular/forms';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ApiService } from 'src/app/services/api.service';
 import { BuscaCepService } from 'src/app/services/busca-cep.service';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 
 interface buscaCep {
   cep: string;
@@ -54,7 +56,6 @@ export class SolicitacaoFormComponent implements OnInit {
     telefone: [''],
     mensagem: [''],
   })
-
   
 
   constructor(private fb: FormBuilder,
@@ -63,7 +64,9 @@ export class SolicitacaoFormComponent implements OnInit {
     public tokenService: TokenService,
     public loadingService: LoadingService,
     private apiService: ApiService,
-    public buscaCepService: BuscaCepService) {
+    public buscaCepService: BuscaCepService,
+    @Inject(MAT_DIALOG_DATA) public data,
+    public dialog: MatDialog,) {
   }
 
   ngOnInit(): void {
@@ -80,8 +83,6 @@ export class SolicitacaoFormComponent implements OnInit {
   ngAfterViewChecked() {
     this.cdr.detectChanges();
   }
-
-
 
   isPhone() {
     return this.profileForm.get('telefone').value.length <= 10
@@ -132,11 +133,17 @@ export class SolicitacaoFormComponent implements OnInit {
   }
 
   submit() {
-    this.loadingService.isActive = true
-    this.infoService.gerarPedido(this.profileForm.value)
+    this.infoService.summaryCheck = this.profileForm.value
+    this.openConfirm()
+  /*   this.loadingService.isActive = true
+    this.infoService.gerarPedido(this.profileForm.value) */
   }
 
-
+  openConfirm(){
+    const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      width: '600px'
+    })
+  }
 
   onClick(info) {
     if (info === 'Entregar no endereço') {

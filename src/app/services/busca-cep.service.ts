@@ -56,8 +56,8 @@ export class BuscaCepService {
   url = 'https://viacep.com.br/ws/'
   mostraValores = false
   valor = 0
-  valorTotal = 0
   valorServico = 67.20
+  valorTotal = this.valorServico
   frete = 0
 
   constructor(private apiService: ApiService,

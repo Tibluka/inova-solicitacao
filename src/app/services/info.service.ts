@@ -24,7 +24,7 @@ interface arrayConsulta {
       livro_ato: string;
       mensagem: string;
       nome_partes: string;
-
+      entrega: number;
       solicitante: {
         email: string;
         nome: string;
@@ -33,6 +33,8 @@ interface arrayConsulta {
       },
       status: string;
       tipo_ato: string;
+      valor_frete: number;
+      valor_solicitacao: number;
     }
   ],
   tipo_retirada: string;
@@ -59,12 +61,10 @@ export class InfoService {
   arraySolicitacoes: arrayConsulta
   codigo_solicitacao: number = null
   base64 = []
-
+  summaryCheck: arrayConsulta
   constructor(private apiService: ApiService, public loadingService: LoadingService, public router: Router, public buscaCepService: BuscaCepService) { }
 
   gerarPedido(inputs) {
-    console.log(inputs.entrega);
-
     const data =
     {
       nome_partes: inputs.nome_partes,

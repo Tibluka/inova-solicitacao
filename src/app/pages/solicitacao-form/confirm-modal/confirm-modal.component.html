@@ -1,0 +1,36 @@
+<div class="content">
+    <h1 class="title-section">
+        CONFIRMAR INFORMAÇÕES PREENCHIDAS
+    </h1>
+    <div class="dados-ato">
+        <h3 *ngIf="infoService?.summaryCheck?.nome_partes">Nome das partes: <i>{{infoService?.summaryCheck?.nome_partes}}</i></h3>
+        <h3 *ngIf="infoService?.summaryCheck?.tipo_ato">Tipo do ato: <i>{{infoService?.summaryCheck?.tipo_ato}}</i></h3>
+        <h3 *ngIf="infoService?.summaryCheck?.livro_ato">Livro: <i>{{infoService?.summaryCheck?.livro_ato}}</i></h3>
+        <h3 *ngIf="infoService?.summaryCheck?.folha_ato">Folha: <i>{{infoService?.summaryCheck?.folha_ato}}</i> </h3>
+    </div>
+    <div *ngIf="infoService?.summaryCheck?.entrega === 2" class="forma-entrega">
+        <h3>Endereço de entrega:
+            <i>{{infoService?.summaryCheck?.logradouro}} -
+                {{infoService?.summaryCheck?.numero}} -
+                {{infoService?.summaryCheck?.cep}} -
+                {{infoService?.summaryCheck?.cidade}} -
+                {{infoService?.summaryCheck?.uf}}
+            </i>
+        </h3>
+    </div>
+    <div class="dados-solicitante">
+        <h3 *ngIf="infoService?.summaryCheck?.nome">Nome do solicitante: <i>{{infoService?.summaryCheck?.nome}}</i></h3>
+        <h3 *ngIf="infoService?.summaryCheck?.cpf_cnpj">CPF/CNPJ do solicitante: <i>{{infoService?.summaryCheck?.cpf_cnpj}}</i></h3>
+        <h3 *ngIf="infoService?.summaryCheck?.email">Email: <i>{{infoService?.summaryCheck?.email}}</i></h3>
+        <h3 *ngIf="infoService?.summaryCheck?.telefone">Telefone: <i>{{infoService?.summaryCheck?.telefone}}</i></h3>
+        <h3 *ngIf="infoService?.summaryCheck?.mensagem">Mensagem: <i>{{infoService?.summaryCheck?.mensagem}}</i></h3>
+    </div>
+    <div class="valores">
+        <h2 style="text-align: center;">Valor total do serviço: {{buscaCepService?.valorTotal | currency:'BRL':true}}</h2>
+    </div>
+
+<div class="action">
+    <button mat-raised-button color="primary" class="btn" (click)="onNoClick()">Cancelar</button>
+    <button mat-raised-button color="primary" class="btn" (click)="submit()">Confirmar</button>
+</div>
+</div>

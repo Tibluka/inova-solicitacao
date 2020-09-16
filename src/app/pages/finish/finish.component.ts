@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { InfoService } from 'src/app/services/info.service';
 import { TokenService } from 'src/app/services/token.service';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 interface tokenInterface {
   access_token: string;
@@ -20,9 +21,11 @@ export class FinishComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     public infoService: InfoService,
     private tokenService: TokenService,
-    private apiService: ApiService) { }
+    private apiService: ApiService,
+    public loadingService: LoadingService) { }
 
   ngOnInit(): void {
+    this.loadingService.isActive = true
     const userCode = this.activatedRoute.snapshot.paramMap.get("id")
     this.tokenService.getToken().subscribe((result: tokenInterface) => {
       this.infoService.access_token = result.access_token
