@@ -143,7 +143,6 @@ export class SolicitacaoFormComponent implements OnInit {
       this.profileForm.controls['cep'].setValidators([Validators.required])
       this.profileForm.controls['logradouro'].setValidators([Validators.required])
       this.profileForm.controls['numero'].setValidators([Validators.required])
-      this.profileForm.controls['complemento'].setValidators([Validators.required])
       this.profileForm.controls['bairro'].setValidators([Validators.required])
       this.profileForm.controls['cidade'].setValidators([Validators.required])
       this.profileForm.controls['uf'].setValidators([Validators.required])
@@ -153,19 +152,16 @@ export class SolicitacaoFormComponent implements OnInit {
       this.profileForm.get('cep').clearValidators();
       this.profileForm.get('logradouro').clearValidators();
       this.profileForm.get('numero').clearValidators();
-      this.profileForm.get('complemento').clearValidators();
       this.profileForm.get('bairro').clearValidators();
       this.profileForm.get('cidade').clearValidators();
       this.profileForm.get('uf').clearValidators();
       this.profileForm.get('cep').updateValueAndValidity();
       this.profileForm.get('logradouro').updateValueAndValidity();
       this.profileForm.get('numero').updateValueAndValidity();
-      this.profileForm.get('complemento').updateValueAndValidity();
       this.profileForm.get('bairro').updateValueAndValidity();
       this.profileForm.get('cidade').updateValueAndValidity();
       this.profileForm.get('uf').updateValueAndValidity();
       this.profileForm.controls['entrega'].setValue(1)
-
     }
   }
 }

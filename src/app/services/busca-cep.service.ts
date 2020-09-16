@@ -73,19 +73,22 @@ export class BuscaCepService {
   calcularFrete(cepDestino) {
     this.loadingService.isActive = true
     this.apiService.getApiCep('/calculo-frete?cepOrigem=' +
-      '05311900' +
+      '05401450' +
       '&cepDestino=' +
       cepDestino).subscribe((res: resCalcCep) => {
         this.mostraValores = true
         this.loadingService.isActive = false
         this.valor = res.Servicos.cServico[0].Valor[0]
+        console.log(this.valor);
+        
         this.calculaTotal(this.valor)
       })
   }
 
   calculaTotal(valorFrete) {
     let servico = this.valorServico
-    this.frete = parseInt(valorFrete)
+    this.frete = parseFloat(valorFrete.replace(',','.'))
+    this.frete.toFixed(2)   
     this.valorTotal = servico += this.frete
   }
 

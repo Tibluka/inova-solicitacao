@@ -2,23 +2,23 @@
   <h1 class="title-section mt-30">DADOS DO ATO</h1>
   <mat-form-field class="example-full-width">
     <mat-label>Nome da(s) Parte(s)</mat-label>
-    <textarea required formControlName="nome_partes" matInput value=""></textarea>
+    <textarea formControlName="nome_partes" matInput value=""></textarea>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>Tipo do Ato</mat-label>
-    <input required formControlName="tipo_ato" matInput value="">
+    <input formControlName="tipo_ato" placeholder="Ex: Escritura; Certidão de nascimento" matInput value="">
   </mat-form-field>
 
   <div class="d-flex">
     <mat-form-field class="example-full-width mr">
       <mat-label>Livro</mat-label>
-      <input required formControlName="livro_ato" matInput value="">
+      <input formControlName="livro_ato" matInput value="">
     </mat-form-field>
 
     <mat-form-field class="example-full-width ml">
       <mat-label>Folha</mat-label>
-      <input required formControlName="folha_ato" matInput value="">
+      <input formControlName="folha_ato" matInput value="">
     </mat-form-field>
   </div>
 
@@ -117,13 +117,16 @@
 
   <p>Valor do serviço: {{buscaCepService?.valorServico | currency:'BRL':true}}</p>
   <div *ngIf="profileForm.get('entrega').value == 2">
-
     <p>Frete: {{buscaCepService?.frete | currency:'BRL':true}}</p>
     <p>Total: {{buscaCepService?.valorTotal | currency:'BRL':true}}</p>
   </div>
 
 
-  <input style="margin-top: 30px;" type="file" (change)="handleFileChange($event)" multiple>
+  <h1 class="title-section mt-30">
+    POSSUI UMA CÓPIA DO ATO ACIMA?
+  </h1>
+
+  <input type="file" (change)="handleFileChange($event)" multiple>
 
   <div class="text-right">
     <button [disabled]="profileForm.invalid" mat-raised-button color="primary" class="btn">Solicitar</button>
