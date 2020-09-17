@@ -7,7 +7,7 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>Tipo do Ato</mat-label>
-    <input formControlName="tipo_ato" placeholder="Ex: Escritura; Certidão de nascimento" matInput value="">
+    <input formControlName="tipo_ato" placeholder="Ex: Escritura, Procuração, Inventário, etc..." matInput value="">
   </mat-form-field>
 
   <div class="d-flex">
@@ -126,10 +126,26 @@
     POSSUI UMA CÓPIA DO ATO ACIMA?
   </h1>
 
-  <input type="file" (change)="handleFileChange($event)" multiple>
+  <div class="div" style="display: flex; justify-content: space-between;">
+    <div>
+      <form class="form">
+        <div class="file-upload-wrapper" data-text="Selecione um ou mais arquivos">
+          <input name="file-upload-field" type="file" (change)="handleFileChange($event)" class="file-upload-field"
+            multiple>
+        </div>
+      </form>
+      <div class="files" *ngFor="let file of infoService.base64">
+        <span>{{file.nome_arquivo}}</span>
+        <mat-icon (click)="removeSelectedFile(file)">close</mat-icon>
+      </div>
+    </div>
 
-  <div class="text-right">
-    <button [disabled]="profileForm.invalid" mat-raised-button color="primary" class="btn">Solicitar</button>
+
+    <div class="text-right">
+      <button [disabled]="profileForm.invalid" mat-raised-button color="primary" class="btn">Solicitar</button>
+    </div>
+
   </div>
+
 
 </form>

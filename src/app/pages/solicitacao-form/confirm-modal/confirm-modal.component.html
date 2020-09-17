@@ -2,12 +2,14 @@
     <h1 class="title-section">
         CONFIRMAR INFORMAÇÕES PREENCHIDAS
     </h1>
+    <ng-template #notFilled><i>Não informado</i></ng-template>
     <div class="dados-ato">
-        <h3 *ngIf="infoService?.summaryCheck?.nome_partes">Nome das partes: <i>{{infoService?.summaryCheck?.nome_partes}}</i></h3>
-        <h3 *ngIf="infoService?.summaryCheck?.tipo_ato">Tipo do ato: <i>{{infoService?.summaryCheck?.tipo_ato}}</i></h3>
-        <h3 *ngIf="infoService?.summaryCheck?.livro_ato">Livro: <i>{{infoService?.summaryCheck?.livro_ato}}</i></h3>
-        <h3 *ngIf="infoService?.summaryCheck?.folha_ato">Folha: <i>{{infoService?.summaryCheck?.folha_ato}}</i> </h3>
+        <h3>Nome das partes: <i *ngIf="infoService?.summaryCheck?.nome_partes; else notFilled">{{infoService?.summaryCheck?.nome_partes}}</i></h3>
+        <h3>Tipo do ato: <i *ngIf="infoService?.summaryCheck?.tipo_ato; else notFilled">{{infoService?.summaryCheck?.tipo_ato}}</i></h3>
+        <h3>Livro: <i *ngIf="infoService?.summaryCheck?.livro_ato; else notFilled">{{infoService?.summaryCheck?.livro_ato}}</i></h3>
+        <h3>Folha: <i *ngIf="infoService?.summaryCheck?.folha_ato; else notFilled">{{infoService?.summaryCheck?.folha_ato}}</i> </h3> 
     </div>
+   
     <div *ngIf="infoService?.summaryCheck?.entrega === 2" class="forma-entrega">
         <h3>Endereço de entrega:
             <i>{{infoService?.summaryCheck?.logradouro}} -

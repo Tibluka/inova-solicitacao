@@ -50,13 +50,13 @@ export class SolicitacaoFormComponent implements OnInit {
     bairro: [''],
     cidade: [''],
     uf: [''],
-    nome: [''],
-    cpf_cnpj: [''],
-    email: ['', ([Validators.required, Validators.email])],
-    telefone: [''],
-    mensagem: [''],
+    nome: ['adsdas asddsa'],
+    cpf_cnpj: ['41345243855'],
+    email: ['asdsda@sdaasd', ([Validators.required, Validators.email])],
+    telefone: ['11964316391'],
+    mensagem: ['adsads'],
   })
-  
+
 
   constructor(private fb: FormBuilder,
     public infoService: InfoService,
@@ -125,21 +125,26 @@ export class SolicitacaoFormComponent implements OnInit {
           this.infoService.base64.push({
             nome_arquivo: element.name.toLowerCase(),
             base64 /* == base64: base64 */
-          })  
+          })
         }
         reader.readAsDataURL(element)
       }
     }
   }
 
+  removeSelectedFile(file) {
+    const index = this.infoService.base64.indexOf(file)
+    this.infoService.base64.splice(index, 1);
+  }
+
   submit() {
     this.infoService.summaryCheck = this.profileForm.value
     this.openConfirm()
-  /*   this.loadingService.isActive = true
-    this.infoService.gerarPedido(this.profileForm.value) */
+    /*   this.loadingService.isActive = true
+      this.infoService.gerarPedido(this.profileForm.value) */
   }
 
-  openConfirm(){
+  openConfirm() {
     const dialogRef = this.dialog.open(ConfirmModalComponent, {
       width: '600px'
     })
