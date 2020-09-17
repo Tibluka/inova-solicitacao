@@ -9,6 +9,9 @@
 
 .text-right {
     text-align: right;
+    button:disabled{
+        cursor: not-allowed;
+    }
 }
 
 .mr {
