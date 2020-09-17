@@ -33,9 +33,6 @@ interface tokenInterface {
 
 export class SolicitacaoFormComponent implements OnInit {
 
-  get phoneMask() {
-    return this.isPhone() ? '(00) 0000-00009' : '(00) 00000-0000'
-  }
 
   profileForm = this.fb.group({
     nome_partes: [''],
@@ -50,11 +47,11 @@ export class SolicitacaoFormComponent implements OnInit {
     bairro: [''],
     cidade: [''],
     uf: [''],
-    nome: ['adsdas asddsa'],
-    cpf_cnpj: ['41345243855'],
-    email: ['asdsda@sdaasd', ([Validators.required, Validators.email])],
-    telefone: ['11964316391'],
-    mensagem: ['adsads'],
+    nome: [''],
+    cpf_cnpj: [''],
+    email: ['', ([Validators.required, Validators.email])],
+    telefone: [''],
+    mensagem: [''],
   })
 
 
@@ -84,6 +81,10 @@ export class SolicitacaoFormComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
+  get phoneMask() {
+    return this.isPhone() ? '(00) 0000-00009' : '(00) 00000-0000'
+  }
+  
   isPhone() {
     return this.profileForm.get('telefone').value.length <= 10
   }

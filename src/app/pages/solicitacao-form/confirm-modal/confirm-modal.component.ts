@@ -35,6 +35,21 @@ export class ConfirmModalComponent implements OnInit {
     })
   }
 
+  
+
+
+  public cpfcnpjmask = function (rawValue) {
+    let numbers = rawValue.match(/\d/g);
+    let numberLength = 0;
+    if (numbers) {
+      numberLength = numbers.join('').length;
+    }
+    if (numberLength <= 11) {
+      return [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
+    } else {
+      return [/[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
+    }
+  }
   submit() {
     this.infoService.gerarPedido(this.infoService.summaryCheck)
     this.dialogRef.close()
