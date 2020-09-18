@@ -71,7 +71,7 @@ export class InfoService {
       tipo_ato: inputs.tipo_ato,
       livro: inputs.livro_ato,
       folha: inputs.folha_ato,
-      forma_entrega: 2,
+      forma_entrega: this.forma_entrega,
       endereco: {
         cep: inputs.cep,
         logradouro: inputs.logradouro,
@@ -94,10 +94,8 @@ export class InfoService {
     this.apiService.setHeader(this.access_token)
     console.log(data);
     this.apiService.postApi<any>('/solicitacoes', data).subscribe(result => {
-
       this.uploadArquivo(result.solicitacao.codigo)
       this.router.navigate(['/finish/' + result.solicitacao.codigo])
-      this.loadingService.isActive = false
     }, error => {
       this.loadingService.isActive = false
     })

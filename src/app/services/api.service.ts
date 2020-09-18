@@ -40,7 +40,7 @@ export class ApiService {
   getApiCep<T>(params): Observable<T> {
     return this.http.get<T>('https://f2rkl509o9.execute-api.us-west-2.amazonaws.com/Dev' + params, this.httpOptions)
   }
-  
+
 
   postApi<T>(params, body): Observable<T> {
     return this.http.post<T>(environment.url + params, body, this.httpOptions)
@@ -52,8 +52,8 @@ export class ApiService {
         {
           'Content-Type': 'application/json',
           'Authorization': token,
-         /*  'cartorio': '3901e05b-eef0-11ea-924e-0af504ceb319' */ /* teste caio */
-          'cartorio': '390228c0-eef0-11ea-924e-0af504ceb319'  /* Cartório toledo */
+          'cartorio': '3901e05b-eef0-11ea-924e-0af504ceb319'  /* teste caio */
+          /* 'cartorio': '390228c0-eef0-11ea-924e-0af504ceb319' */  /* Cartório toledo */
         }
       ),
     }

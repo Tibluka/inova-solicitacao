@@ -1,3 +1,7 @@
+<h1 style="text-align: justify;" class="title-section mt-30 example-form">
+  O preenchimento dos campos abaixo nos auxiliará na busca do ato praticado em nosso arquivo. Por este motivo, é
+  importante que preencha os campos com o máximo de informações possível
+</h1>
 <form [formGroup]="profileForm" class="example-form" autocomplete="off" (ngSubmit)="submit()">
   <h1 class="title-section mt-30">DADOS DO ATO</h1>
   <mat-form-field class="example-full-width">
@@ -21,6 +25,22 @@
       <input formControlName="folha_ato" matInput value="">
     </mat-form-field>
   </div>
+
+  <h1 class="title-section">
+    POSSUI UMA CÓPIA DO ATO ACIMA?
+  </h1>
+
+  <form class="form">
+    <div class="file-upload-wrapper" data-text="Selecione um ou mais arquivos">
+      <input name="file-upload-field" type="file" (change)="handleFileChange($event)" class="file-upload-field"
+        multiple>
+    </div>
+  </form>
+  <div class="files" *ngFor="let file of infoService.base64">
+    <span>{{file.nome_arquivo}}</span>
+    <mat-icon (click)="removeSelectedFile(file)">close</mat-icon>
+  </div>
+
 
   <h1 class="title-section mt-30">
     FORMA DE ENTREGA
@@ -80,7 +100,6 @@
     DADOS DO SOLICITANTE
   </h1>
 
-
   <div class="d-flex">
     <mat-form-field class="example-full-width mr">
       <mat-label>Seu Nome</mat-label>
@@ -111,39 +130,22 @@
     <textarea required formControlName="mensagem" matInput placeholder="Digite uma mensagem"></textarea>
   </mat-form-field>
 
-  <h1 class="title-section mt-30">
-    VALORES
-  </h1>
-
-  <p>Valor do serviço: {{buscaCepService?.valorServico | currency:'BRL':true}}</p>
-  <div *ngIf="profileForm.get('entrega').value == 2">
-    <p>Frete: {{buscaCepService?.frete | currency:'BRL':true}}</p>
-    <p>Total: {{buscaCepService?.valorTotal | currency:'BRL':true}}</p>
-  </div>
-
-
-  <h1 class="title-section mt-30">
-    POSSUI UMA CÓPIA DO ATO ACIMA?
-  </h1>
-
-  <div class="div" style="display: flex; justify-content: space-between;">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
     <div>
-      <form class="form">
-        <div class="file-upload-wrapper" data-text="Selecione um ou mais arquivos">
-          <input name="file-upload-field" type="file" (change)="handleFileChange($event)" class="file-upload-field"
-            multiple>
-        </div>
-      </form>
-      <div class="files" *ngFor="let file of infoService.base64">
-        <span>{{file.nome_arquivo}}</span>
-        <mat-icon (click)="removeSelectedFile(file)">close</mat-icon>
+      <h1 class="title-section mt-30">
+        VALORES
+      </h1>
+
+      <p>Valor do serviço: {{buscaCepService?.valorServico | currency:'BRL':true}}</p>
+      <div *ngIf="profileForm.get('entrega').value == 2">
+        <p>Frete: {{buscaCepService?.frete | currency:'BRL':true}}</p>
+        <p>Total: {{buscaCepService?.valorTotal | currency:'BRL':true}}</p>
       </div>
-    </div>
 
+    </div>
     <div class="text-right">
-      <button [disabled]="profileForm.invalid" mat-raised-button color="primary" class="btn">Solicitar</button>
+      <button [disabled]="profileForm.invalid" mat-raised-button color="primary" class="btn">ENVIAR SOLICITAÇÃO</button>
     </div>
-
   </div>
 
 

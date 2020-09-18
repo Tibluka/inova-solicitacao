@@ -18,6 +18,10 @@
     .example-card {
         mat-card-content {
             width: 100%;
+            .files{
+                display: flex;
+                flex-direction: column;
+            }
             h3 {
                 font-size: 14pt;
                 font-weight: 300;
