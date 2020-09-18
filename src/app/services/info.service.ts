@@ -56,7 +56,7 @@ export class InfoService {
   temEndereco = false
   access_token
   opcaoEntregaSelecionada: string = 'Retirar no cartório';
-  forma_entrega = 1
+  forma_entrega
   opcoesEntrega: string[] = ['Retirar no cartório', 'Entregar no endereço'];
   arraySolicitacoes: arrayConsulta
   codigo_solicitacao: number = null
@@ -65,8 +65,23 @@ export class InfoService {
   constructor(private apiService: ApiService, public loadingService: LoadingService, public router: Router, public buscaCepService: BuscaCepService) { }
 
   gerarPedido(inputs) {
-    const data =
-    {
+    const dataWithoutAddress = {
+      nome_partes: inputs.nome_partes,
+      tipo_ato: inputs.tipo_ato,
+      livro: inputs.livro_ato,
+      folha: inputs.folha_ato,
+      forma_entrega: this.forma_entrega,
+      dados_solicitante: {
+        nome: inputs.nome,
+        cpf_cnpj: inputs.cpf_cnpj.replace(/\D/g, ''),
+        email: inputs.email,
+        telefone: inputs.telefone.replace(/\D/g, '')
+      },
+      mensagem: inputs.mensagem,
+      valor_solicitacao: this.buscaCepService.valorServico.toFixed(2),
+      valor_frete: this.buscaCepService.frete.toFixed(2)
+    }
+    const dataWithAddress = {
       nome_partes: inputs.nome_partes,
       tipo_ato: inputs.tipo_ato,
       livro: inputs.livro_ato,
@@ -92,18 +107,26 @@ export class InfoService {
       valor_frete: this.buscaCepService.frete.toFixed(2)
     }
     this.apiService.setHeader(this.access_token)
-    console.log(data);
-    this.apiService.postApi<any>('/solicitacoes', data).subscribe(result => {
-      this.uploadArquivo(result.solicitacao.codigo)
-      this.router.navigate(['/finish/' + result.solicitacao.codigo])
-    }, error => {
-      this.loadingService.isActive = false
-    })
+
+    if (this.forma_entrega === 2) {
+      this.apiService.postApi<any>('/solicitacoes', dataWithAddress).subscribe(result => {
+        this.uploadArquivo(result.solicitacao.codigo)
+        this.router.navigate(['/finish/' + result.solicitacao.codigo])
+      }, error => {
+        this.loadingService.isActive = false
+      })
+    } else {
+      this.apiService.postApi<any>('/solicitacoes', dataWithoutAddress).subscribe(result => {
+        this.uploadArquivo(result.solicitacao.codigo)
+        this.router.navigate(['/finish/' + result.solicitacao.codigo])
+      }, error => {
+        this.loadingService.isActive = false
+      })
+    }
   }
 
   uploadArquivo(userCode) {
     this.apiService.postFork('/solicitacoes/' + userCode + '/uploads', this.base64).subscribe(res => {
-      console.log(res)
       this.loadingService.isActive = false
       this.router.navigate(['/finish/' + userCode])
     })

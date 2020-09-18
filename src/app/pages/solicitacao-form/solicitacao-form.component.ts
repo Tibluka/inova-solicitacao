@@ -67,7 +67,8 @@ export class SolicitacaoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.infoService.forma_entrega = 1
+    let entrega = this.profileForm.get('entrega').value
+    this.infoService.forma_entrega = entrega
     this.infoService.opcaoEntregaSelecionada = 'Retirar no cartório'
     this.loadingService.isActive = true
     this.tokenService.getToken().subscribe((result: tokenInterface) => {
@@ -84,7 +85,7 @@ export class SolicitacaoFormComponent implements OnInit {
   get phoneMask() {
     return this.isPhone() ? '(00) 0000-00009' : '(00) 00000-0000'
   }
-  
+
   isPhone() {
     return this.profileForm.get('telefone').value.length <= 10
   }
@@ -160,7 +161,7 @@ export class SolicitacaoFormComponent implements OnInit {
       this.profileForm.controls['cidade'].setValidators([Validators.required])
       this.profileForm.controls['uf'].setValidators([Validators.required])
       this.profileForm.controls['entrega'].setValue(2)
-
+      this.infoService.forma_entrega = 2
     } else {
       this.profileForm.get('cep').clearValidators();
       this.profileForm.get('logradouro').clearValidators();
@@ -175,6 +176,7 @@ export class SolicitacaoFormComponent implements OnInit {
       this.profileForm.get('cidade').updateValueAndValidity();
       this.profileForm.get('uf').updateValueAndValidity();
       this.profileForm.controls['entrega'].setValue(1)
+      this.infoService.forma_entrega = 1
     }
   }
 }

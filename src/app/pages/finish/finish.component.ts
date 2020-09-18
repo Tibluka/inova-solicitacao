@@ -26,12 +26,12 @@ export class FinishComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingService.isActive = true
-    const userCode = this.activatedRoute.snapshot.paramMap.get("id")
+    const solicitationCode = this.activatedRoute.snapshot.paramMap.get("id")
     this.tokenService.getToken().subscribe((result: tokenInterface) => {
       this.infoService.access_token = result.access_token
       console.log(this.infoService.access_token);
       this.apiService.setHeader(result.access_token)
-      this.infoService.consultar(userCode)
+      this.infoService.consultar(solicitationCode)
     })
   }
 
