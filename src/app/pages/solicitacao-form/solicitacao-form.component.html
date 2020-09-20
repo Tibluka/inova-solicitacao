@@ -1,6 +1,7 @@
 <h1 style="text-align: justify;" class="title-section mt-30 example-form">
   O preenchimento dos campos abaixo nos auxiliará na busca do ato praticado em nosso arquivo. Por este motivo, é
-  importante que preencha os campos com o máximo de informações possível
+  importante que preencha os campos com o máximo de informações possível. <br>
+  <i>Obs: Caso não tenha todas as informações iremos fazer uma busca em nossas Notas, e a mesma tem prazo indeterminado.</i>
 </h1>
 <form [formGroup]="profileForm" class="example-form" autocomplete="off" (ngSubmit)="submit()">
   <h1 class="title-section mt-30">DADOS DO ATO</h1>
@@ -25,8 +26,9 @@
       <input formControlName="folha_ato" matInput value="">
     </mat-form-field>
   </div>
+  <hr>
 
-  <h1 class="title-section">
+  <h1 class="title-section mt-30">
     POSSUI UMA CÓPIA DO ATO ACIMA?
   </h1>
 
@@ -40,6 +42,7 @@
     <span>{{file.nome_arquivo}}</span>
     <mat-icon (click)="removeSelectedFile(file)">close</mat-icon>
   </div>
+  <hr>
 
 
   <h1 class="title-section mt-30">
@@ -93,8 +96,8 @@
         <input formControlName="uf" matInput>
       </mat-form-field>
     </div>
-
   </div>
+  <hr>
 
   <h1 class="title-section mt-30">
     DADOS DO SOLICITANTE
@@ -103,7 +106,7 @@
   <div class="d-flex">
     <mat-form-field class="example-full-width mr">
       <mat-label>Seu Nome</mat-label>
-      <input pattern="[a-z-A-Z\s]* [a-z-A-Z\s]*" required formControlName="nome" matInput>
+      <input pattern="[a-z-A-Z-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]* [a-z-A-Z-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*" required formControlName="nome" matInput>
     </mat-form-field>
 
     <mat-form-field class="example-full-width ml">
@@ -129,8 +132,8 @@
     <mat-label>Mensagem</mat-label>
     <textarea required formControlName="mensagem" matInput placeholder="Digite uma mensagem"></textarea>
   </mat-form-field>
-
-  <div style="display: flex; justify-content: space-between; align-items: center;">
+<hr>
+  <div class="action-bottom" style="display: flex; justify-content: space-between; align-items: center;">
     <div>
       <h1 class="title-section mt-30">
         VALORES

@@ -9,11 +9,17 @@
 
 .text-right {
     text-align: right;
-    button:disabled{
+    button:disabled {
         cursor: not-allowed;
         background: rgb(169, 167, 167);
         color: rgb(49, 49, 49);
     }
+}
+
+hr{
+    opacity: 0.2;
+    margin-top: 30px;
+    width: 98%;
 }
 
 .mr {
@@ -54,23 +60,21 @@
     margin: 5px;
 }
 
-
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700,300');
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,300");
 
 body {
     font-family: "Lato", sans-serif;
 }
 
-
 .form {
     width: 500px;
 }
 
-.files{
+.files {
     margin-top: 15px;
     display: flex;
     align-items: center;
-    mat-icon{
+    mat-icon {
         margin-left: 10px;
         cursor: pointer;
     }
@@ -149,16 +153,16 @@ body {
     .form {
         width: 100%;
     }
-    
-  .div{
-      flex-direction: column;
-  }
-  .text-right{
-      margin-top: 10px;
-      button{
-          width: 100%;
-      }
-  }
+
+    .div {
+        flex-direction: column;
+    }
+    .text-right {
+        margin-top: 10px;
+        button {
+            width: 100%;
+        }
+    }
 }
 
 @media (max-width: 665px) {
@@ -176,12 +180,25 @@ body {
     }
 }
 
-@media (max-width: 470px) {
+@media (max-width: 510px) {
+    .file-upload-wrapper {
+        &:after {
+            font-size: 12px;
+        }
+    }
+}
 
+@media (max-width: 470px) {
     .example-form {
         margin: 30px 20px;
     }
     mat-radio-group {
         flex-direction: column;
+    }
+    .action-bottom {
+        flex-direction: column;
+        .text-right {
+            width: 100%;
+        }
     }
 }
