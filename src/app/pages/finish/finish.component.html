@@ -6,7 +6,9 @@
                 <h1>Solicitação enviada com sucesso!</h1>
                 <p><strong>Código da solicitação: </strong> {{this.infoService.arraySolicitacoes?.codigo_simples}}</p>
                 <p><strong>Data da solicitação:</strong>
-                    {{this.infoService.arraySolicitacoes?.data_criacao | date: 'dd/MM/yyyy'}}</p>
+                    {{this.infoService?.arraySolicitacoes?.data_criacao | date: 'dd/MM/yyyy'}}</p>
+                <p><strong>Data do ato informada:</strong>
+                    {{this.infoService?.arraySolicitacoes?.data_ato | date: 'dd/MM/yyyy'}}</p>
             </div>
         </mat-card-content>
     </mat-card>

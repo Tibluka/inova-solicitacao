@@ -36,6 +36,7 @@ export class SolicitacaoFormComponent implements OnInit {
 
   profileForm = this.fb.group({
     nome_partes: [''],
+    data_ato: [''],
     tipo_ato: [''],
     livro_ato: [''],
     folha_ato: [''],

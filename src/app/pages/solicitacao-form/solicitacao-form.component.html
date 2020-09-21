@@ -21,9 +21,14 @@
       <input formControlName="livro_ato" matInput value="">
     </mat-form-field>
 
-    <mat-form-field class="example-full-width ml">
+    <mat-form-field class="example-full-width ml mr">
       <mat-label>Folha</mat-label>
       <input formControlName="folha_ato" matInput value="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width ml">
+      <mat-label>Data do Ato</mat-label>
+      <input formControlName="data_ato" mask="00/00/0000" type="numberic" placeholder="Ex: DD/MM/YYYY" matInput value="">
     </mat-form-field>
   </div>
   <hr>

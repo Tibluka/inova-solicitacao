@@ -18,6 +18,7 @@ interface arrayConsulta {
   ],
   solicitacoes: [
     {
+      data_ato: string;
       codigo: number;
       creation_date: string;
       folha_ato: string;
@@ -69,6 +70,7 @@ export class InfoService {
 
   gerarPedido(inputs) {
     const dataWithoutAddress = {
+      data_ato: inputs.data_ato,
       nome_partes: inputs.nome_partes,
       tipo_ato: inputs.tipo_ato,
       livro: inputs.livro_ato,
