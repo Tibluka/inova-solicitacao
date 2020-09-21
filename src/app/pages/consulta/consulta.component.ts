@@ -28,5 +28,16 @@ export class ConsultaComponent implements OnInit {
     })
   }
 
+     
+  isCPF(cpf_cnpj): string {
+    return  cpf_cnpj && cpf_cnpj.length < 12 ? '000.000.000-009' : '00.000.000/0000-00';
+  }
+
+  get cpf_cnpj(){
+    return this.infoService.cpfSolicitacao
+  }
+
+
+
 }
 

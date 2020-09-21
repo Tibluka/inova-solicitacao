@@ -8,6 +8,7 @@ import { BuscaCepService } from './busca-cep.service';
 interface arrayConsulta {
   codigo: number;
   data_criacao: Date;
+  codigo_simples: number;
   resumo: [
     {
       descricao: string;
@@ -60,8 +61,10 @@ export class InfoService {
   opcoesEntrega: string[] = ['Retirar no cartório', 'Entregar no endereço'];
   arraySolicitacoes: arrayConsulta
   codigo_solicitacao: number = null
+  cpfSolicitacao: string = null
   base64 = []
   summaryCheck: arrayConsulta
+  error = false
   constructor(private apiService: ApiService, public loadingService: LoadingService, public router: Router, public buscaCepService: BuscaCepService) { }
 
   gerarPedido(inputs) {
@@ -144,6 +147,21 @@ export class InfoService {
       this.loadingService.isActive = false
       this.temEndereco = false
       this.buscarSolicitacao = false
+    })
+  }
+
+  consultarSimple(id, cpf){
+    this.loadingService.isActive = true
+    this.apiService.setHeaderBusca(this.access_token, cpf)
+    this.apiService.getApi('/solicitacoes/simples/' + id).subscribe((res2: arrayConsulta) =>{
+      this.arraySolicitacoes = res2
+      this.buscarSolicitacao = true
+      this.temEndereco = true
+      this.loadingService.isActive = false
+      this.error = false
+    }, err =>{
+      this.error = true
+      this.loadingService.isActive = false
     })
   }
 }

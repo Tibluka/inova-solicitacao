@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 
@@ -22,7 +24,9 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatButtonModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot(),
+    TextMaskModule
   ]
 })
 export class ConsultaModule { }
