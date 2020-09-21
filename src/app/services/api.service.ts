@@ -66,8 +66,8 @@ export class ApiService {
         {
           'Content-Type': 'application/json',
           'Authorization': token,
-           'cartorio': '3901e05b-eef0-11ea-924e-0af504ceb319',   /* teste caio */
-           /* 'cartorio': '390228c0-eef0-11ea-924e-0af504ceb319' */   /* Cartório toledo */
+         /*   'cartorio': '3901e05b-eef0-11ea-924e-0af504ceb319',  */  /* teste caio */
+            'cartorio': '390228c0-eef0-11ea-924e-0af504ceb319',   /* Cartório toledo */
            'identificacao': cpf
         }
       ),

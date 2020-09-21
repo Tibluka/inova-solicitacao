@@ -35,9 +35,6 @@ export class ConfirmModalComponent implements OnInit {
     })
   }
 
-  
-
-
   public cpfcnpjmask = function (rawValue) {
     let numbers = rawValue.match(/\d/g);
     let numberLength = 0;
@@ -51,6 +48,7 @@ export class ConfirmModalComponent implements OnInit {
     }
   }
   submit() {
+    this.infoService.clicked = true
     this.infoService.gerarPedido(this.infoService.summaryCheck)
     this.dialogRef.close()
     this.loadingService.isActive = true

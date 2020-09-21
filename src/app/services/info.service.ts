@@ -57,6 +57,7 @@ export class InfoService {
   buscarSolicitacao = false
   temEndereco = false
   access_token
+  clicked = false
   opcaoEntregaSelecionada: string = 'Retirar no cartório';
   forma_entrega
   opcoesEntrega: string[] = ['Retirar no cartório', 'Entregar no endereço'];
@@ -69,6 +70,7 @@ export class InfoService {
   constructor(private apiService: ApiService, public loadingService: LoadingService, public router: Router, public buscaCepService: BuscaCepService) { }
 
   gerarPedido(inputs) {
+    this.clicked = true
     const dataWithoutAddress = {
       data_ato: inputs.data_ato,
       nome_partes: inputs.nome_partes,

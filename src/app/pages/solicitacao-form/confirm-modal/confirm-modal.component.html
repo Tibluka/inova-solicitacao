@@ -37,6 +37,6 @@
 
 <div class="action">
     <button mat-raised-button color="primary" class="btn" (click)="onNoClick()">Cancelar</button>
-    <button mat-raised-button color="primary" class="btn" (click)="submit()">Confirmar</button>
+    <button mat-raised-button color="primary" [disabled]="this.infoService.clicked" class="btn" (click)="submit()">Confirmar</button>
 </div>
 </div>
