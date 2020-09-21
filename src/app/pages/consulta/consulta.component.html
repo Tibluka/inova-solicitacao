@@ -16,61 +16,61 @@
 
             <button [disabled]="this.infoService?.codigo_solicitacao === null ||
                  this.infoService?.codigo_solicitacao === '' || 
-                 this.infoService.cpfSolicitacao === null ||
-                 this.infoService.cpfSolicitacao === '' " mat-raised-button class="btn" color="primary"
-                (click)="this.infoService.consultarSimple(this.infoService.codigo_solicitacao, this.infoService.cpfSolicitacao)">Consultar
+                 this.infoService?.cpfSolicitacao === null ||
+                 this.infoService?.cpfSolicitacao === '' " mat-raised-button class="btn" color="primary"
+                (click)="this.infoService?.consultarSimple(this.infoService?.codigo_solicitacao, this.infoService?.cpfSolicitacao)">Consultar
             </button>
         </div>
 
     </div>
     <hr>
-    <mat-card class="example-card" *ngIf="infoService.buscarSolicitacao">
+    <mat-card class="example-card" *ngIf="infoService?.buscarSolicitacao">
         <mat-card-content>
             <div class="info">
                 <h3>Informações da solicitação</h3>
                 <p> <strong>Código da solicitação:</strong>
-                    {{this.infoService.arraySolicitacoes?.codigo_simples || 'Não informado'}} </p>
+                    {{this.infoService?.arraySolicitacoes?.codigo_simples || 'Não informado'}} </p>
                 <p> <strong>Data da solicitação:</strong>
-                    {{(this.infoService.arraySolicitacoes?.data_criacao | date: 'dd/MM/yyyy') || 'Não informado'}} </p>
+                    {{(this.infoService?.arraySolicitacoes?.data_criacao | date: 'dd/MM/yyyy') || 'Não informado'}} </p>
                 <p> <strong>Nomes das partes:</strong>
-                    {{this.infoService.arraySolicitacoes?.nome_partes || 'Não informado'}} </p>
-                <p> <strong>Tipo ato:</strong> {{this.infoService.arraySolicitacoes?.tipo_ato || 'Não informado'}} </p>
-                <p> <strong>Livro ato</strong> {{this.infoService.arraySolicitacoes?.livro_ato || 'Não informado'}} </p>
-                <p> <strong>Folha ato</strong> {{this.infoService.arraySolicitacoes?.folha_ato || 'Não informado'}} </p>
-                <p> <strong>Mensagem</strong> {{this.infoService.arraySolicitacoes?.mensagem || 'Não informado'}} </p>
-                <p> <strong>Status</strong> {{this.infoService.arraySolicitacoes?.status.descricao || 'Não informado'}}
+                    {{this.infoService?.arraySolicitacoes?.nome_partes || 'Não informado'}} </p>
+                <p> <strong>Tipo ato:</strong> {{this.infoService?.arraySolicitacoes?.tipo_ato || 'Não informado'}} </p>
+                <p> <strong>Livro ato</strong> {{this.infoService?.arraySolicitacoes?.livro_ato || 'Não informado'}} </p>
+                <p> <strong>Folha ato</strong> {{this.infoService?.arraySolicitacoes?.folha_ato || 'Não informado'}} </p>
+                <p> <strong>Mensagem</strong> {{this.infoService?.arraySolicitacoes?.mensagem || 'Não informado'}} </p>
+                <p> <strong>Status</strong> {{this.infoService?.arraySolicitacoes?.status.descricao || 'Não informado'}}
                 </p>
                 <p> <strong>Nome do solicitante:</strong>
-                    {{this.infoService.arraySolicitacoes?.solicitante?.nome || 'Não informado'}} </p>
+                    {{this.infoService?.arraySolicitacoes?.solicitante?.nome || 'Não informado'}} </p>
                 <p> <strong>Email:</strong>
-                    {{this.infoService.arraySolicitacoes?.solicitante?.email || 'Não informado'}} </p>
+                    {{this.infoService?.arraySolicitacoes?.solicitante?.email || 'Não informado'}} </p>
                 <p> <strong>CPF/CNPJ:</strong>
-                    {{this.infoService.arraySolicitacoes?.solicitante?.cpf_cnpj || 'Não informado'}} </p>
+                    {{this.infoService?.arraySolicitacoes?.solicitante?.cpf_cnpj || 'Não informado'}} </p>
                 <p> <strong>Telefone:</strong>
-                    {{this.infoService.arraySolicitacoes?.solicitante?.telefone || 'Não informado'}} </p>
+                    {{this.infoService?.arraySolicitacoes?.solicitante?.telefone || 'Não informado'}} </p>
 
-                <div class="address" *ngIf="infoService.arraySolicitacoes?.tipo_retirada === 2">
+                <div class="address" *ngIf="infoService?.arraySolicitacoes?.tipo_retirada === 2">
                     <hr>
                     <h3>Endereço</h3>
-                    <p><strong>CEP:</strong> {{this.infoService.arraySolicitacoes?.endereco?.cep || 'Não informado'}}
+                    <p><strong>CEP:</strong> {{this.infoService?.arraySolicitacoes?.endereco?.cep || 'Não informado'}}
                     </p>
                     <p><strong>Logradouro:</strong>
-                        {{this.infoService.arraySolicitacoes?.endereco?.logradouro || 'Não informado'}}</p>
+                        {{this.infoService?.arraySolicitacoes?.endereco?.logradouro || 'Não informado'}}</p>
                     <p><strong>Número:</strong>
-                        {{this.infoService.arraySolicitacoes?.endereco?.numero || 'Não informado'}}</p>
+                        {{this.infoService?.arraySolicitacoes?.endereco?.numero || 'Não informado'}}</p>
                     <p><strong>Complemento:</strong>
-                        {{this.infoService.arraySolicitacoes?.endereco?.complemento || 'Não informado'}}</p>
+                        {{this.infoService?.arraySolicitacoes?.endereco?.complemento || 'Não informado'}}</p>
                     <p><strong>Bairro:</strong>
-                        {{this.infoService.arraySolicitacoes?.endereco?.bairro || 'Não informado'}}</p>
+                        {{this.infoService?.arraySolicitacoes?.endereco?.bairro || 'Não informado'}}</p>
                     <p><strong>Cidade:</strong>
-                        {{this.infoService.arraySolicitacoes?.endereco?.cidade || 'Não informado'}}</p>
-                    <p><strong>UF:</strong> {{this.infoService.arraySolicitacoes?.endereco?.uf || 'Não informado'}}</p>
+                        {{this.infoService?.arraySolicitacoes?.endereco?.cidade || 'Não informado'}}</p>
+                    <p><strong>UF:</strong> {{this.infoService?.arraySolicitacoes?.endereco?.uf || 'Não informado'}}</p>
                 </div>
             </div>
-            <div class="files" *ngIf="this.infoService.arraySolicitacoes?.uploads[0].s3_url != null">
+            <div class="files" *ngIf="this.infoService?.arraySolicitacoes?.uploads[0].s3_url != null">
                 <hr>
                 <h3>Arquivos</h3>
-                <a *ngFor="let url of this.infoService.arraySolicitacoes?.uploads" href="{{url.s3_url}}"
+                <a *ngFor="let url of this.infoService?.arraySolicitacoes?.uploads" href="{{url.s3_url}}"
                     target="_blank"> <strong>Link para download: </strong>{{url.s3_url}}</a>
             </div>
         </mat-card-content>
