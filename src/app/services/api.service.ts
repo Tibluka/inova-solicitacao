@@ -9,6 +9,10 @@ import { environment } from 'src/environments/environment';
 })
 export class ApiService {
 
+  userId = '390228c0-eef0-11ea-924e-0af504ceb319' //cartório Toledo
+  /* userId = ' 3901e05b-eef0-11ea-924e-0af504ceb319' */ //teste caio
+
+
   private httpOptions = {
     headers: new HttpHeaders(
       {
@@ -52,23 +56,21 @@ export class ApiService {
         {
           'Content-Type': 'application/json',
           'Authorization': token,
-           'cartorio': '3901e05b-eef0-11ea-924e-0af504ceb319'   /* teste caio */
-           /* 'cartorio': '390228c0-eef0-11ea-924e-0af504ceb319' */   /* Cartório toledo */
+          'cartorio': this.userId  
         }
       ),
     }
   }
 
-  setHeaderBusca(token, cpf){
-    
+  setHeaderBusca(token, cpf) {
+
     this.httpOptions = {
       headers: new HttpHeaders(
         {
           'Content-Type': 'application/json',
           'Authorization': token,
-         /*   'cartorio': '3901e05b-eef0-11ea-924e-0af504ceb319',  */  /* teste caio */
-            'cartorio': '390228c0-eef0-11ea-924e-0af504ceb319',   /* Cartório toledo */
-           'identificacao': cpf
+          'cartorio': this.userId,   
+          'identificacao': cpf
         }
       ),
     }
