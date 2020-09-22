@@ -68,6 +68,7 @@ export class SolicitacaoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.infoService.clicked = false
     let entrega = this.profileForm.get('entrega').value
     this.infoService.forma_entrega = entrega
     this.infoService.opcaoEntregaSelecionada = 'Retirar no cartório'

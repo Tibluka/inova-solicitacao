@@ -29,7 +29,6 @@ export class FinishComponent implements OnInit {
     const solicitationCode = this.activatedRoute.snapshot.paramMap.get("id")
     this.tokenService.getToken().subscribe((result: tokenInterface) => {
       this.infoService.access_token = result.access_token
-      console.log(this.infoService.access_token);
       this.apiService.setHeader(result.access_token)
       this.infoService.consultar(solicitationCode)
     })

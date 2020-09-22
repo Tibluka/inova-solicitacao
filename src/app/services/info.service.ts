@@ -88,7 +88,9 @@ export class InfoService {
       valor_solicitacao: this.buscaCepService.valorServico.toFixed(2),
       valor_frete: this.buscaCepService.frete.toFixed(2)
     }
+    
     const dataWithAddress = {
+      data_ato: inputs.data_ato,
       nome_partes: inputs.nome_partes,
       tipo_ato: inputs.tipo_ato,
       livro: inputs.livro_ato,
@@ -113,6 +115,7 @@ export class InfoService {
       valor_solicitacao: this.buscaCepService.valorServico.toFixed(2),
       valor_frete: this.buscaCepService.frete.toFixed(2)
     }
+
     this.apiService.setHeader(this.access_token)
 
     if (this.forma_entrega === 2) {

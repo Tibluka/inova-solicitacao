@@ -4,6 +4,14 @@
     display: flex;
     flex-direction: column;
     justify-items: center;
+    .action {
+        display: flex;
+        .item {
+            margin-top: 5px;
+            height: 50px;
+            width: 250px;
+        }
+    }
     .example-card {
         flex: 1;
         mat-card-content {
@@ -19,32 +27,33 @@
     }
 }
 
-@media (max-width: 1630px) {
+@media (max-width: 1515px) {
     .content {
-        .example-card {
-            margin: 150px 200px;
-        }
+        margin: 200px 300px;
     }
 }
 
 @media (max-width: 1000px) {
     .content {
-        .example-card {
-            margin: 100px;
-        }
+        margin: 100px;
     }
 }
 
-@media (max-width: 630px) {
+@media (max-width: 720px) {
     .content {
-        .example-card {
-            margin: 80px 50px;
+        .action {
+            flex-direction: column;
+            .item{
+                width: 100% !important ;
+            }
         }
+
     }
 }
 
 @media (max-width: 400px) {
     .content {
+        font-size: 95%;
         .example-card {
             mat-card-content {
                 button {
