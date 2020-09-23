@@ -70,9 +70,10 @@ export class InfoService {
   constructor(private apiService: ApiService, public loadingService: LoadingService, public router: Router, public buscaCepService: BuscaCepService) { }
 
   gerarPedido(inputs) {
+    const date = new Date(Number(inputs.data_ato.substr(0, 4)), Number(inputs.data_ato.substr(5, 2)-1), Number(inputs.data_ato.substr(8, 2)))
     this.clicked = true
     const dataWithoutAddress = {
-      data_ato: inputs.data_ato,
+      data_ato: date,
       nome_partes: inputs.nome_partes,
       tipo_ato: inputs.tipo_ato,
       livro: inputs.livro_ato,
@@ -88,9 +89,9 @@ export class InfoService {
       valor_solicitacao: this.buscaCepService.valorServico.toFixed(2),
       valor_frete: this.buscaCepService.frete.toFixed(2)
     }
-    
+
     const dataWithAddress = {
-      data_ato: inputs.data_ato,
+      data_ato: date,
       nome_partes: inputs.nome_partes,
       tipo_ato: inputs.tipo_ato,
       livro: inputs.livro_ato,
@@ -118,21 +119,21 @@ export class InfoService {
 
     this.apiService.setHeader(this.access_token)
 
-    if (this.forma_entrega === 2) {
-      this.apiService.postApi<any>('/solicitacoes', dataWithAddress).subscribe(result => {
-        this.uploadArquivo(result.solicitacao.codigo)
-        this.router.navigate(['/finish/' + result.solicitacao.codigo])
-      }, error => {
-        this.loadingService.isActive = false
-      })
-    } else {
-      this.apiService.postApi<any>('/solicitacoes', dataWithoutAddress).subscribe(result => {
-        this.uploadArquivo(result.solicitacao.codigo)
-        this.router.navigate(['/finish/' + result.solicitacao.codigo])
-      }, error => {
-        this.loadingService.isActive = false
-      })
-    }
+     if (this.forma_entrega === 2) {
+     this.apiService.postApi<any>('/solicitacoes', dataWithAddress).subscribe(result => {
+       this.uploadArquivo(result.solicitacao.codigo)
+       this.router.navigate(['/finish/' + result.solicitacao.codigo])
+     }, error => {
+       this.loadingService.isActive = false
+     })
+   } else {
+     this.apiService.postApi<any>('/solicitacoes', dataWithoutAddress).subscribe(result => {
+       this.uploadArquivo(result.solicitacao.codigo)
+       this.router.navigate(['/finish/' + result.solicitacao.codigo])
+     }, error => {
+       this.loadingService.isActive = false
+     })
+   }  
   }
 
   uploadArquivo(userCode) {
@@ -157,16 +158,16 @@ export class InfoService {
     })
   }
 
-  consultarSimple(id, cpf){
+  consultarSimple(id, cpf) {
     this.loadingService.isActive = true
     this.apiService.setHeaderBusca(this.access_token, cpf)
-    this.apiService.getApi('/solicitacoes/simples/' + id).subscribe((res2: arrayConsulta) =>{
+    this.apiService.getApi('/solicitacoes/simples/' + id).subscribe((res2: arrayConsulta) => {
       this.arraySolicitacoes = res2
       this.buscarSolicitacao = true
       this.temEndereco = true
       this.loadingService.isActive = false
       this.error = false
-    }, err =>{
+    }, err => {
       this.error = true
       this.loadingService.isActive = false
     })
