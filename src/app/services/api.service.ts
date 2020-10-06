@@ -12,7 +12,6 @@ export class ApiService {
   userId = '390228c0-eef0-11ea-924e-0af504ceb319' //cartório Toledo
    /* userId = ' 3901e05b-eef0-11ea-924e-0af504ceb319' */  //teste caio
 
-
   private httpOptions = {
     headers: new HttpHeaders(
       {
@@ -42,7 +41,7 @@ export class ApiService {
   }
 
   getApiCep<T>(params): Observable<T> {
-    return this.http.get<T>('https://f2rkl509o9.execute-api.us-west-2.amazonaws.com/Dev' + params, this.httpOptions)
+    return this.http.get<T>(environment.url + params, this.httpOptions)
   }
 
 

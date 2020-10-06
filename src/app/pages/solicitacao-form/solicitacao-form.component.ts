@@ -131,6 +131,8 @@ export class SolicitacaoFormComponent implements OnInit {
             base64 /* == base64: base64 */
           })
         }
+        console.log(this.infoService.base64);
+        
         reader.readAsDataURL(element)
       }
     }

@@ -113,8 +113,8 @@ export class InfoService {
         telefone: inputs.telefone.replace(/\D/g, '')
       },
       mensagem: inputs.mensagem,
-      valor_solicitacao: this.buscaCepService.valorServico.toFixed(2),
-      valor_frete: this.buscaCepService.frete.toFixed(2)
+      valor_solicitacao: Number(this.buscaCepService.valorServico.toFixed(2)),
+      valor_frete: Number(this.buscaCepService.frete.toFixed(2))
     }
 
     this.apiService.setHeader(this.access_token)
@@ -137,7 +137,7 @@ export class InfoService {
   }
 
   uploadArquivo(userCode) {
-    this.apiService.postFork('/solicitacoes/' + userCode + '/uploads', this.base64).subscribe(res => {
+    this.apiService.postFork('/solicitacoes/' + userCode + '/uploads', this.base64).subscribe(res => {   
       this.loadingService.isActive = false
       this.router.navigate(['/finish/' + userCode])
     })

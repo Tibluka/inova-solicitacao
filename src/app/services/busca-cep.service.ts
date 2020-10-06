@@ -79,7 +79,6 @@ export class BuscaCepService {
         this.mostraValores = true
         this.loadingService.isActive = false
         this.valor = res.Servicos.cServico[0].Valor[0]
-        
         this.calculaTotal(this.valor)
       })
   }

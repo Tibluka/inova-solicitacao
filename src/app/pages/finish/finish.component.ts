@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { InfoService } from 'src/app/services/info.service';
 import { TokenService } from 'src/app/services/token.service';
 import { ApiService } from 'src/app/services/api.service';
@@ -22,7 +22,8 @@ export class FinishComponent implements OnInit {
     public infoService: InfoService,
     private tokenService: TokenService,
     private apiService: ApiService,
-    public loadingService: LoadingService) { }
+    public loadingService: LoadingService,
+    private route: Router) { }
 
   ngOnInit(): void {
     this.loadingService.isActive = true
@@ -32,6 +33,11 @@ export class FinishComponent implements OnInit {
       this.apiService.setHeader(result.access_token)
       this.infoService.consultar(solicitationCode)
     })
+  }
+
+  sendHome(){
+    this.infoService.base64 = []
+    this.route.navigate(['/'])
   }
 
 }

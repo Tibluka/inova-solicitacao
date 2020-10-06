@@ -49,7 +49,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
     MatGridListModule,
     MatSelectModule,
     MatRadioModule,
-    FormsModule,
     ReactiveFormsModule,
     TextMaskModule,
     MatProgressSpinnerModule
