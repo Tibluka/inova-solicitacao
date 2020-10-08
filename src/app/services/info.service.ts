@@ -162,6 +162,8 @@ export class InfoService {
     this.loadingService.isActive = true
     this.apiService.setHeaderBusca(this.access_token, cpf)
     this.apiService.getApi('/solicitacoes/simples/' + id).subscribe((res2: arrayConsulta) => {
+      console.log(res2);
+      
       this.arraySolicitacoes = res2
       this.buscarSolicitacao = true
       this.temEndereco = true

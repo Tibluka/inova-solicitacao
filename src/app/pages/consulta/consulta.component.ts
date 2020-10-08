@@ -22,7 +22,7 @@ export class ConsultaComponent implements OnInit {
   ngOnInit(): void {
     this.infoService.buscarSolicitacao = false
     this.loadingService.isActive = true
-    this.tokenService.getToken().subscribe((result: tokenInterface) => {
+    this.tokenService.getToken().subscribe((result: tokenInterface) => {      
       this.infoService.access_token = result.access_token
       this.loadingService.isActive = false
     })

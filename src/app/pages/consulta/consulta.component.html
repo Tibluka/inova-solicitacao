@@ -28,6 +28,7 @@
         <mat-card-content>
             <div class="info">
                 <h3>Informações da solicitação</h3>
+                {{this.infoService?.arraySolicitacoes | json}}
                 <p> <strong>Código da solicitação:</strong>
                     {{this.infoService?.arraySolicitacoes?.codigo_simples || 'Não informado'}} </p>
                 <p> <strong>Data da solicitação:</strong>
