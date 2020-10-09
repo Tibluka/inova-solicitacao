@@ -115,7 +115,7 @@ export class InfoService {
       mensagem: inputs.mensagem,
       valor_solicitacao: Number(this.buscaCepService.valorServico.toFixed(2)),
       valor_frete: Number(this.buscaCepService.frete.toFixed(2))
-    }
+    } 
 
     this.apiService.setHeader(this.access_token)
 
